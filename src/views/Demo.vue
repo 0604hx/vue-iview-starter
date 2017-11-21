@@ -12,7 +12,7 @@
 
 <template>
     <div class="demoDiv">
-        <h2>欢迎来到 {{name}}</h2>
+        <h2>欢迎来到 {{name}} <small>version={{version}}</small></h2>
         <div class="section">
             <h3>日期工具</h3>
             <p class="h">封装了 <code>moment.js</code> ,调用 today() 或者 D.today() 得到当天日期</p>
@@ -37,7 +37,8 @@
     export default {
         data () {
             return {
-                name:"vue + iview2 starter"
+                name:"vue + iview2 starter",
+                version: C.version
             }
         },
         methods: {
