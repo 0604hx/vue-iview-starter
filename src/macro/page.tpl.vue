@@ -22,7 +22,8 @@
                     info:""
                 },
                 selectIds:[],
-                columns:[{title:"请自定义columns！"}]
+                columns:[{title:"请自定义columns！"}],
+                autoFocus:null  //当打开编辑对话框时，默认获取到焦点的 input 控件
             }
         },
         methods:{
@@ -111,12 +112,22 @@
                 this._load()
             },
             /**
+             * 目前只针对 iview 组件 input 进行处理
+             */ 
+             _autoFocusAfterModal(){
+                if(!!this.autoFocus){
+                    setTimeout(()=>this.$refs[this.autoFocus].$el.querySelector('input').focus(), 500)
+                }
+            },
+            /**
              * 打开编辑对话框，如果存在 onAdd 方法则先调用，可以对entity进行初始化
              * @private
              */
             _add (){
                 if(this.onAdd)  this.onAdd()
                 this.addModal.show = true
+                
+                this._autoFocusAfterModal()
             },
             /**
              * 编辑数据实体
@@ -127,6 +138,8 @@
                     this.entity = d
                     if(this.onEdit) this.onEdit()
                     this.addModal.show = true
+
+                    this._autoFocusAfterModal()
                 })
             },
             /**
