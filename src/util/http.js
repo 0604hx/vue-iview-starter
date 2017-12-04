@@ -50,7 +50,9 @@ var _dealWithErrorRequest = (url,error, onFail)=>{
         // return window.location.href="#/login"
         E.$emit('navigateTo', 'login')
     }
-    if(error.response.status===500) return M.notice.error(error.response.data.message||"");
+    if(error.response.status===500) return M.notice.error(error.response.data.message||"[500]服务器内部错误");
+    if(error.response.status===404) return M.notice.error("[404]请求的资源不存在："+url);
+    if(error.response.status===405) return M.notice.error("[405]服务端拒绝了'"+url+"'的请求:<div style='color:red'>"+error.response.statusText+"</div>");
 }
 
 /**
