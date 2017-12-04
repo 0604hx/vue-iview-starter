@@ -30,15 +30,35 @@
             <Button @click="tip(false)" type="info">显示简短提醒</Button>
             <Button @click="tip(true)" type="success">显示Notice</Button>
         </div>
+
+        <div class="section">
+            <h3>分页插件</h3>
+            <TablePage v-model="page"></TablePage>
+        </div>
     </div>
 </template>
 
 <script>
+    /*
+    引入 component 时，推荐使用 import . from .  的方式
+    若使用 require（） 则需要加上 .default
+    */
+    // import TablePage from 'M/table.page.vue'
+    
+
     export default {
+        components: {
+            TablePage:require('M/table.page.vue').default
+        },
         data () {
             return {
                 name:"vue + iview2 starter",
-                version: C.version
+                version: C.version,
+                page:{
+                    total:10,
+                    current:1,
+                    pageSize:20
+                }
             }
         },
         methods: {
