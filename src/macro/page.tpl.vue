@@ -4,7 +4,7 @@
 
     export default Vue.extend({
         components:{
-            'table-page':require("./table.page.vue"),
+            TablePage: require("./table.page.vue").default,
         },
         data(){
             return{

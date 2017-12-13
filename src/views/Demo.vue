@@ -32,8 +32,8 @@
         </div>
 
         <div class="section">
-            <h3>分页插件</h3>
-            <TablePage v-model="page"></TablePage>
+            <h3>列表及分页</h3>
+            <DemoList ref="demoList"></DemoList>
         </div>
     </div>
 </template>
@@ -45,10 +45,12 @@
     */
     // import TablePage from 'M/table.page.vue'
     
+    import DemoList from 'C/list.demo.vue'
 
     export default {
         components: {
-            TablePage:require('M/table.page.vue').default
+            TablePage:require('M/table.page.vue').default,
+            DemoList
         },
         data () {
             return {
