@@ -6,6 +6,9 @@ import iView from 'iview'
 import axios from 'axios'
 import querystring  from 'querystring'
 
+//默认的 server 前缀为空
+window.SERVER = ""
+
 var _closeLoading=(iView)=>{
     //如果存在加载中，关闭
     if(window.Loading)  window.Loading()
@@ -37,7 +40,10 @@ var _initAxios=(iView)=>{
 var _dealWithErrorRequest = (url,error, onFail)=>{
     iView.LoadingBar.finish();
     console.log('请求<b class="error">'+url+"</b>出错",error)
-    if(onFail) onFail()
+    
+    //如果 onFail 返回 true 则中断后续的异常处理
+    if(onFail)
+        if(onFail(error?error.response:null)) return
 
     if(error && !error.response){
         //触发 网络无效 的事件

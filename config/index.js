@@ -4,13 +4,28 @@
 
 const path = require('path')
 
+const _proxy = {}
+/**
+ * 这里填写需要转发的 url 规则，如 /app
+ */
+const prefixs = []
+//后端服务器地址
+const server = 'http://localhost:8080/'
+for(var i=0;i<prefixs.length;i++){
+    _proxy[prefixs[i]] = {
+        target: server,
+        changeOrigin: true,
+        secure: false
+    }
+}
+
 module.exports = {
   dev: {
 
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: _proxy,
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
