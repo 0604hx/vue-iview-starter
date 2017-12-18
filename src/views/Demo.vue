@@ -29,6 +29,7 @@
             </div>
             <Button @click="tip(false)" type="info">显示简短提醒</Button>
             <Button @click="tip(true)" type="success">显示Notice</Button>
+            <Button @click="$router.push('/404')" type="warning">404 页面</Button>
         </div>
 
         <div class="section">

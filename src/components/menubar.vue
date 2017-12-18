@@ -1,0 +1,37 @@
+<template>
+    <Menu active-key="dashboard" theme="dark" width="auto">
+        <div class="layout-logo-left" style="color:aliceblue;font-size: 1.5rem;text-align:center;line-height:30px;">
+            <template v-if="shrink">F.dt</template>
+            <template v-else >iview-starter</template>
+        </div>
+        <MenuGroup title="通用页面">
+            <router-link to="/login">
+                <MenuItem key="login" name="login" title="打开登录页面">
+                    <Icon type="ios-locked-outline"></Icon>
+                    <span class="layout-text">登录页面</span>
+                </MenuItem>
+            </router-link>
+            <router-link to="/404">
+                <MenuItem key="404" name="404" title="打开 404 页面">
+                    <Icon type="ios-help-outline"></Icon>
+                    <span class="layout-text">404</span>
+                </MenuItem>
+            </router-link>
+        </MenuGroup>
+
+        <MenuGroup title="演示功能">
+            <router-link to="/demo">
+                <MenuItem key="demo" name="demo" title="打开演示页面">
+                    <Icon type="ios-analytics-outline"></Icon>
+                    <span class="layout-text">演示页面</span>
+                </MenuItem>
+            </router-link>
+        </MenuGroup>
+    </Menu>
+</template>
+
+<script>
+    export default {
+        props: ["shrink"]
+    }
+</script>

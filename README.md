@@ -12,6 +12,10 @@
 2. 打包项目时不生成 `map文件`，如需打开请设置 `config/index.js` 的 `productionSourceMap` 为 `true`
 3. 打包时压缩 js、css 文件，如需关闭请设置 `config/index.js` 的 `productionGzip` 为 `false`
 
+### 鸣谢
+
+[iview-admin](https://github.com/iview/iview-admin/blob/dev/src/views/Main.vue)
+
 ## 如何使用
 
 ``` bash
