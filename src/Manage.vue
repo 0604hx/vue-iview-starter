@@ -66,7 +66,6 @@
     },
     data() {
       return {
-        name: "火眼金睛",
         shrink: false,
         userName: '请先登录',
         menuList: []
