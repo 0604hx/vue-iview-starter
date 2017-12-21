@@ -18,7 +18,8 @@ let appRouter = {
   title: "manage-main",
   component: Main,
   children:[
-    { path: '/demo', meta:{title:"演示页面"}, name: 'demo', component: resolve => require(['./views/Demo'], resolve) },
+    { path: '/demo/index', meta:{title:"演示页面"}, name: 'demo', component: resolve => require(['./views/demo/Index'], resolve) },
+    { path: '/demo/list', meta:{title:"列表演示"}, name: 'demo-list', component: resolve => require(['./views/demo/List'], resolve) },
     page404
   ]
 }

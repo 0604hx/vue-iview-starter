@@ -18,7 +18,49 @@
             <p class="h">封装了 <code>moment.js</code> ,调用 today() 或者 D.today() 得到当天日期</p>
             <small>{{today()}}</small>
         </div>
-        
+
+        <div class="section">
+            <h3>计数器</h3>
+            <p class="h">代码参考：<a href="https://github.com/iview/iview-admin">iview-admin</a></p>
+            <Row :gutter="5">
+                <Col :xs="24" :sm="8" :md="6">
+                    <InfoCard
+                        id-name="register-today"
+                        :end-val="100"
+                        iconType="person-stalker"
+                        color="#ffd572"
+                        intro-text="今日注册用户"
+                    ></InfoCard>
+                </Col>
+                <Col :xs="24" :sm="8" :md="6">
+                    <InfoCard
+                        id-name="post-today"
+                        :end-val="456"
+                        iconType="ios-paper"
+                        color="#2d8cf0"
+                        intro-text="今日文章发布数量"
+                    ></InfoCard>
+                </Col>
+                <Col :xs="24" :sm="8" :md="6">
+                    <InfoCard
+                        id-name="visit"
+                        :end-val="9875841"
+                        iconType="android-unlock"
+                        color="#64d572"
+                        intro-text="今日访问量"
+                    ></InfoCard>
+                </Col>
+                <Col :xs="24" :sm="8" :md="6">
+                    <InfoCard
+                        id-name="comment"
+                        :end-val="78"
+                        iconType="ios-chatbubble"
+                        color="#f25e43"
+                        intro-text="今日留言&评论"
+                    ></InfoCard>
+                </Col>
+            </Row>
+        </div>
 
         <div class="section">
             <h3>提示信息</h3>
@@ -34,7 +76,7 @@
 
         <div class="section">
             <h3>列表及分页</h3>
-            <DemoList ref="demoList"></DemoList>
+            <small>请点击菜单中的”列表演示“</small>
         </div>
     </div>
 </template>
@@ -46,12 +88,12 @@
     */
     // import TablePage from 'M/table.page.vue'
     
-    import DemoList from 'C/list.demo.vue'
+    import InfoCard from 'C/common/inforCard.vue'
 
     export default {
         components: {
             TablePage:require('M/table.page.vue').default,
-            DemoList
+            InfoCard
         },
         data () {
             return {

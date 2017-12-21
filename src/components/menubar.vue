@@ -20,10 +20,16 @@
         </MenuGroup>
 
         <MenuGroup title="演示功能">
-            <router-link to="/demo">
-                <MenuItem key="demo" name="demo" title="打开演示页面">
+            <router-link to="/demo/index">
+                <MenuItem name="demo-index" title="打开演示页面">
                     <Icon type="ios-analytics-outline"></Icon>
                     <span class="layout-text">演示页面</span>
+                </MenuItem>
+            </router-link>
+            <router-link to="/demo/list">
+                <MenuItem name="demo-list">
+                    <Icon type="ios-analytics-outline"></Icon>
+                    <span class="layout-text">列表演示</span>
                 </MenuItem>
             </router-link>
         </MenuGroup>

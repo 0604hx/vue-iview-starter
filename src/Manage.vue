@@ -33,16 +33,15 @@
         <div class="header-avator-con">
           <div class="user-dropdown-menu-con">
             <Row type="flex" justify="end" align="middle" class="user-dropdown-innercon">
-              <Dropdown transfer trigger="click" @on-click="handleClickUserDropdown" placement="bottom-end">
-                <a href="javascript:void(0)">
-                    <Avatar size="large" style="background: #619fe7;">{{userName}}</Avatar>
-                </a>
-                <DropdownMenu slot="list">
-                  <DropdownItem name="ownSpace">个人中心</DropdownItem>
-                  <DropdownItem name="loginout" divided>退出登录</DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
-              
+                <Dropdown transfer trigger="click" @on-click="handleClickUserDropdown" placement="bottom-end">
+                  <a href="javascript:void(0)">
+                      <Avatar size="large" style="background: #619fe7;">{{userName}}</Avatar>
+                  </a>
+                  <DropdownMenu slot="list">
+                    <DropdownItem name="ownSpace">个人中心</DropdownItem>
+                    <DropdownItem name="logout" divided>退出登录</DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
             </Row>
           </div>
         </div>
@@ -55,14 +54,17 @@
         </keep-alive>
       </div>
     </div>
+
+    <Global></Global>
   </div>
 </template>
 <script>
   import Menubar from 'C/menubar.vue'
+  import Global from 'V/Global.vue'
 
   export default {
     components: {
-      Menubar
+      Menubar, Global
     },
     data() {
       return {
@@ -83,13 +85,12 @@
           this.$router.push({
             name: 'ownspace_index'
           });
-        } else if (name === 'loginout') {
+        } else if (name === 'logout') {
           // 退出登录
-          this.$store.commit('logout', this);
-          this.$store.commit('clearOpenedSubmenu');
-          this.$router.push({
-            name: 'login'
-          });
+          M.confirm("登出", "确定要退出当前账号吗？", () => {
+            M.notice.ok("你已经退出系统！","登出成功")
+            this.$router.replace("/login")
+          })
         }
       }
     },

@@ -54,6 +54,8 @@
     .loginM .ivu-modal-header-inner {color:#3399ff;text-align:center;font-weight: normal}
 </style>
 <script>
+    let NEXT = "demo"
+
     export default{
         data(){
             return{
@@ -79,10 +81,10 @@
         created (){
         },
         methods:{
-            handleSubmit (name) {
+            handleSubmit() {
                 this.$refs.accountForm.validate(valid => {
                     if (valid) {
-                        this.$router.push("/demo")
+                        this.$router.replace({name:NEXT})
                         M.notice.ok("在这里编写您的登录逻辑（默认跳转到 /demo)","登录成功")
                     } else {
                         M.warn("请填写登录信息")
@@ -92,6 +94,17 @@
             handleReset () {
                 this.$refs.accountForm.resetFields();
             }
+        },
+        destroyed () {
+            /**
+             * add on 2017年12月19日10:08:31
+             * 测试发现，vue-router 改变了 url 但并未切换页面
+             * 这里进行强制刷新
+             * 
+             * 可能是 vue 版本问题
+             */ 
+            if(this.$route.name==NEXT)
+                window.location.reload()
         }
     }
 </script>
