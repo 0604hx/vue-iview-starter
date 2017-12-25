@@ -8,6 +8,7 @@
 
 ![](static/data-list.png)
 
+![](static/demo-chart.png)
 
 ## 说明
 
