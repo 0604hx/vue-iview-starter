@@ -7,7 +7,7 @@
         </Button>
         <DropdownMenu slot="list">
             <DropdownItem name="json">JSON 格式</DropdownItem>
-            <DropdownItem name="excel">Excel 格式</DropdownItem>
+            <DropdownItem name="xlsx">Excel 格式</DropdownItem>
         </DropdownMenu>
     </Dropdown>
 </template>

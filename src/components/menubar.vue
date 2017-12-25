@@ -32,6 +32,12 @@
                     <span class="layout-text">列表演示</span>
                 </MenuItem>
             </router-link>
+            <router-link to="/demo/chart">
+                <MenuItem name="demo-chart">
+                    <Icon type="ios-analytics-outline"></Icon>
+                    <span class="layout-text">图表、地图</span>
+                </MenuItem>
+            </router-link>
         </MenuGroup>
     </Menu>
 </template>
