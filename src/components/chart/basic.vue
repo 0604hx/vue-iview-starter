@@ -1,12 +1,23 @@
 <template>
-    <div style="width:100%; overflow:hidden"></div>
+    <div style="width:100%; overflow:hidden" :style="{height:height+'px'}"></div>
 </template>
 
 <script>
     let Highcharts = require('highcharts')
 
     export default {
-        props: ['options','type','data', 'title','subtitle','ytitle'],
+        props: {
+            options:Object,
+            type:String,
+            data:Object, 
+            title:String,
+            subtitle:String,
+            ytitle:String,
+            height:{
+                type:Number,
+                default: 400
+            }
+        },
         data() {
             return {
                 chart: null,
