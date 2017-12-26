@@ -20,7 +20,7 @@
                 <Icon type="map"></Icon>
                 柱状图（通过 <em>options</em> 定义）
             </p>
-            <ColumnChart :options="columnOptions"></ColumnChart>
+            <Chart :options="columnOptions"></Chart>
         </Card>
 
         <Card class="mt10" :padding="0">
@@ -28,18 +28,18 @@
                 <Icon type="map"></Icon>
                 柱状图（通过 <em>data</em> 快速定义，只处理单个 series）
             </p>
-            <ColumnChart title="全球人口密度" :data="columnData" ytitle="人口"></ColumnChart>
+            <Chart title="全球人口密度" :data="columnData" type="area" ytitle="人口"></Chart>
         </Card>
     </div>
 </template>
 
 <script>
     import MapCountry from 'C/chart/map.world.vue'
-    import ColumnChart from 'C/chart/column.vue'
+    import Chart from 'C/chart/basic.vue'
 
     export default {
         components: {
-            MapCountry,ColumnChart
+            MapCountry,Chart
         },
         data () {
             return {

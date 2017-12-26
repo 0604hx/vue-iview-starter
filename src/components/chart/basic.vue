@@ -6,7 +6,7 @@
     let Highcharts = require('highcharts')
 
     export default {
-        props: ['options','data', 'title','subtitle','ytitle'],
+        props: ['options','type','data', 'title','subtitle','ytitle'],
         data() {
             return {
                 chart: null,
@@ -23,10 +23,14 @@
                     this.chart = Highcharts.chart(this.$el, this.ops)
             },
             figureOption(){
-                
+                let type = this.type || 'line'
+                let maped = this.type == 'pie'? 
+                    v=>{return {name:v.name||v.code, y:v.value||v.count}}
+                    :
+                    v=>{return v.value||v.count}
                 this.ops = {
                     chart: {
-                        type: 'column'
+                        type: type
                     },
                     title:{text:this.title},
                     subtitle:{text:this.subtitle},
@@ -36,10 +40,12 @@
                     xAxis: {
                         categories: this.data.map(v=>v.name || v.code)
                     },
-                    series: [{
-                        name: this.title||'未命名',
-                        data: this.data.map(v=>v.value)
-                    }]
+                    series: [
+                        {
+                            name: this.title||'未命名',
+                            data: this.data.map(maped)
+                        }
+                    ]
                 }
             }
         },
