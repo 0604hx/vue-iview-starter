@@ -34,8 +34,14 @@
             </router-link>
             <router-link to="/demo/chart">
                 <MenuItem name="demo-chart">
-                    <Icon type="ios-analytics-outline"></Icon>
+                    <Icon type="ios-pie-outline"></Icon>
                     <span class="layout-text">图表、地图</span>
+                </MenuItem>
+            </router-link>
+            <router-link to="/demo/code-editor">
+                <MenuItem name="demo-code-editor">
+                    <Icon type="code"></Icon>
+                    <span class="layout-text">代码编辑器</span>
                 </MenuItem>
             </router-link>
         </MenuGroup>

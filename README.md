@@ -10,6 +10,8 @@
 
 ![](static/demo-chart.png)
 
+![](static/demo-code.png)
+
 ## 说明
 
 此项目基于[vue-webpack-template](https://github.com/vuejs-templates/webpack)构建，并作了以下调整：

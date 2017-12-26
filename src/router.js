@@ -21,6 +21,7 @@ let appRouter = {
     { path: '/demo/index', meta:{title:"演示页面"}, name: 'demo', component: resolve => require(['./views/demo/Index'], resolve) },
     { path: '/demo/list', meta:{title:"列表演示"}, name: 'demo-list', component: resolve => require(['./views/demo/List'], resolve) },
     { path: '/demo/chart', meta:{title:"图表、地图演示"}, name: 'demo-chart', component: resolve => require(['./views/demo/Chart'], resolve) },
+    { path: '/demo/code-editor', meta:{title:"代码编辑器"}, name: 'demo-code-editor', component: resolve => require(['./views/demo/CodeEditor'], resolve) },
     page404
   ]
 }
