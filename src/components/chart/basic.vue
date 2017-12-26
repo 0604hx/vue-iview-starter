@@ -7,68 +7,102 @@
 
     export default {
         props: {
-            options:Object,
-            type:String,
-            data:Object, 
-            title:String,
-            subtitle:String,
-            ytitle:String,
-            height:{
-                type:Number,
+            name: String,
+            options: Object,
+            type: String,
+            data: Array,
+            title: String,
+            subtitle: String,
+            ytitle: String,
+            //是否显示百分比，只针对 pie 图表
+            per: {
+                type: Boolean,
+                default: true
+            },
+            height: {
+                type: Number,
                 default: 400
             }
         },
         data() {
             return {
                 chart: null,
-                ops:this.options
+                ops: this.options
             }
         },
         methods: {
             refresh() {
-                if(this.data)
+                if (this.data)
                     this.figureOption()
 
                 console.log(this.data, this.ops)
-                if(this.ops && this.ops.series)
+                if (this.ops && this.ops.series)
                     this.chart = Highcharts.chart(this.$el, this.ops)
             },
-            figureOption(){
+            figureOption() {
                 let type = this.type || 'line'
-                let maped = this.type == 'pie'? 
-                    v=>{return {name:v.name||v.code, y:v.value||v.count}}
+                let isPie = this.type == 'pie'
+                let maped = isPie ?
+                    v => { return { name: v.name || v.code, y: v.value || v.count } }
                     :
-                    v=>{return v.value||v.count}
-                this.ops = {
+                    v => { return v.value || v.count }
+
+                let ds = this.data.map(maped)
+                if (isPie && ds.length > 0) {
+                    ds[0] = Object.assign(ds[0], {
+                        sliced: true,
+                        selected: true
+                    })
+                }
+
+                let ops = {
                     chart: {
                         type: type
                     },
-                    title:{text:this.title},
-                    subtitle:{text:this.subtitle},
+                    title: { text: this.title },
+                    subtitle: { text: this.subtitle },
                     yAxis: {
-                        title: {text: this.ytitle}
+                        title: { text: this.ytitle }
                     },
                     xAxis: {
-                        categories: this.data.map(v=>v.name || v.code)
+                        categories: this.data.map(v => v.name || v.code)
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: this.per ? '{point.name} ({point.percentage:.1f}%)' : undefined
+                            },
+                            showInLegend: true
+                        }
                     },
                     series: [
                         {
-                            name: this.title||'未命名',
-                            data: this.data.map(maped)
+                            name: this.name || this.title || '未命名',
+                            data: ds
                         }
                     ]
                 }
+                if (isPie) {
+                    let tooltip = ops.tooltip || {}
+                    if (this.per)
+                        tooltip.pointFormat = '<span style="color:{series.color}">\u25CF</span> {series.name}: <b>{point.y}</b> ({point.percentage:.1f}%)<br/>.'
+                    ops.tooltip = tooltip
+                }
+
+                this.ops = ops
             }
         },
-        mounted () {
+        mounted() {
             this.refresh()
         },
         watch: {
-            data (v){
-                console.log("data 变化了")
+            data(v) {
                 this.refresh()
             },
-            options (){
+            options() {
                 this.ops = v
             }
         }
