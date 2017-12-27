@@ -45,6 +45,15 @@
                 </MenuItem>
             </router-link>
         </MenuGroup>
+
+        <MenuGroup title="系统管理">
+            <router-link to="/sys/log">
+                <MenuItem name="sys-log">
+                <Icon type="ios-paper-outline"></Icon>
+                <span class="layout-text">系统日志</span>
+                </MenuItem>
+            </router-link>
+        </MenuGroup>
     </Menu>
 </template>
 

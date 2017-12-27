@@ -22,6 +22,10 @@ let appRouter = {
     { path: '/demo/list', meta:{title:"列表演示"}, name: 'demo-list', component: resolve => require(['./views/demo/List'], resolve) },
     { path: '/demo/chart', meta:{title:"图表、地图演示"}, name: 'demo-chart', component: resolve => require(['./views/demo/Chart'], resolve) },
     { path: '/demo/code-editor', meta:{title:"代码编辑器"}, name: 'demo-code-editor', component: resolve => require(['./views/demo/CodeEditor'], resolve) },
+
+    // 系统相关
+    { path: '/sys/log', meta:{title:"日志-系统管理"}, name: 'sys-log', component: resolve => require(['./views/system/Log'], resolve) },
+
     page404
   ]
 }
