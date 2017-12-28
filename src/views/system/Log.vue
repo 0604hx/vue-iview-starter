@@ -2,12 +2,15 @@
     <div>
         <i-form inline class="thin">
             <Form-item>
-                <i-input type="text"  v-model="form.search_Like_un" placeholder="用户名"></i-input>
+                <i-input type="text"  v-model="form.s_Like_un" placeholder="用户名"></i-input>
             </Form-item>
             <Form-item >
-                <i-select v-model="form.search_EQ_t_" style="width: 110px" placeholder="日志类型">
+                <i-select v-model="form.s_EQ_t_" style="width: 110px" placeholder="日志类型">
                     <i-option v-for="item in logType" :value="item.value">{{ item.text }}</i-option>
                 </i-select>
+            </Form-item>
+            <Form-item>
+                <i-input type="text"  v-model="form.s_Like_on" placeholder="模块名"></i-input>
             </Form-item>
             <Form-item>
                 <Row>
@@ -24,7 +27,7 @@
                 <i-button type="primary" shape="circle" icon="ios-search" @click.native="_search()"></i-button>
             </Form-item>
             <Form-item class="fr">
-                <ExportButton :form="form" entity="日志"></ExportButton>
+                <ExportButton :form="form" entity="log"></ExportButton>
             </Form-item>
         </i-form>
 
@@ -52,13 +55,13 @@
                     { title: "", type: "index", width: 40 },
                     { title: "用户名", key: "un", width: 120, sortable: true },
                     { title: "用户id", key: "uid" },
-                    { title: "对象名称", key: "on" },
-                    { title:"操作类型", key:"t", sortable:true,
+                    { title: "模块名", key: "on" },
+                    { title:"类型", key:"t", sortable:true,
                         render:(h,p)=>{
                             return h('p',this._logType(p.row.t))
                         }
                     },
-                    { title: "操作描述", key: "m",
+                    { title: "描述", key: "m",
                         render:(h,p)=>{
                             const cs =[]
                             if(p.row.m) cs.push(h('p',p.row.m))
@@ -97,18 +100,6 @@
             },
             LtDate (v) {
                 this.form.search_LT_d = v
-            },
-            showDetail (i){
-                const t=this.datas[i]
-                this.logDetail = t
-                this.showLogDetail = true
-            },
-            disabled (i){
-                if(this.datas[i].t == 5){
-                    return false
-                }else{
-                    return true
-                }
             },
             showError (i){
                 const l = this.datas[i]
