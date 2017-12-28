@@ -5,18 +5,18 @@
                 <i-input type="text"  v-model="form.search_Like_un" placeholder="用户名"></i-input>
             </Form-item>
             <Form-item >
-                <i-select v-model="form.search_EQ_t_" style="width: 110px" placeholder="任务类型">
+                <i-select v-model="form.search_EQ_t_" style="width: 110px" placeholder="日志类型">
                     <i-option v-for="item in logType" :value="item.value">{{ item.text }}</i-option>
                 </i-select>
             </Form-item>
             <Form-item>
                 <Row>
                     <i-col span="11">
-                        <Date-picker type="date" placeholder="选择日期" @on-change="GtDate"></Date-picker>
+                        <Date-picker type="date" placeholder="选择开始日期" @on-change="GtDate"></Date-picker>
                     </i-col>
                     <i-col span="2" style="text-align: center">-</i-col>
                     <i-col span="11">
-                        <Date-picker type="date" placeholder="选择日期" @on-change="LtDate"></Date-picker>
+                        <Date-picker type="date" placeholder="选择截止日期" @on-change="LtDate"></Date-picker>
                     </i-col>
                 </Row>
             </Form-item>
@@ -31,8 +31,8 @@
         <i-table :data="datas" :columns="columns" stripe></i-table>
         <TablePage v-model="page"></TablePage>
 
-        <Modal v-model="showLogDetail" title="错误日志详细内容">
-          <p>{{logDetail.e}}</p>
+        <Modal v-model="errorShow" :width="1000" title="错误信息">
+            <div class="h" v-html="error" style="max-height: 500px;overflow-y: auto"></div>
         </Modal>
     </div>
 </template>
@@ -46,41 +46,36 @@
         },
         data () {
             return {
-                showLogDetail:false,
-                logDetail:{},
+                errorShow:false,
+                error:"",
                 columns: [
                     { title: "", type: "index", width: 40 },
                     { title: "用户名", key: "un", width: 120, sortable: true },
                     { title: "用户id", key: "uid" },
                     { title: "对象名称", key: "on" },
-                    { title:"操作类型", key:"t", sortable:true, width:100,
+                    { title:"操作类型", key:"t", sortable:true,
                         render:(h,p)=>{
-                            return h('span',this._logType(p.row.t))
+                            return h('p',this._logType(p.row.t))
                         }
                     },
-                    { title: "操作描述", key: "m" },
-                    { title: "操作字段", key: "df" },
-                    { title: "操作前的值", key: "dv" },
-                    { title: "操作后的值", key: "dc" },
-                    { title: "录入日期", key: "d", width: 155, sortable: true, render: (h, p) => { return h('p', D.datetime(p.row.d)) } },
-                    { title: "操作", width: 150,
+                    { title: "操作描述", key: "m",
                         render:(h,p)=>{
-                            return h('div',[
-                                h('ButtonGroup',[
-                                    h('Button', {
-                                        attrs:{title:"查看错误日志详细信息",disabled:this.disabled(p.index)},
-                                        props: {type: "ghost",icon: "eye"},
-                                        nativeOn: {
-                                            click: () => {
-                                                this.showDetail(p.index)
-                                            }
-                                        }
-                                      }
-                                    ),
-                                ]),
-                            ]);
+                            const cs =[]
+                            if(p.row.m) cs.push(h('p',p.row.m))
+                            if(p.row.e) cs.push(h('Button',{
+                                props:{type:'error',size:"small"},
+                                on:{
+                                    click:()=>{
+                                      this.showError(p.index)
+                                    }
+                                }
+                              }, "查看错误信息")
+                            )
+                            return h('p',cs)
                         }
-                    }
+                    },
+                    { title: "记录日期", key: "d", width: 155, sortable: true, render: (h, p) => { return h('p', D.datetime(p.row.d)) } },
+
                 ],
                 logType:[
                     {text:"默认",value:0},
@@ -114,16 +109,21 @@
                 }else{
                     return true
                 }
-            }
+            },
+            showError (i){
+                const l = this.datas[i]
+                this.error = this.html(l.e)
+                this.errorShow = true
+            },
         },
         mounted () {
             this.api = ""
             this.datas = [
-                {un:"Suffer", uid:"xx_xxx_xxxx", on:"测试", t:0, m:"xx做了yy事情", e:"发现了异常!", df:"zz字段", dv:"0", dc:"1", d:1513152313000},
-                {un:"Suffer_1", uid:"xx_xxx_xxxx", on:"测试1", t:1, m:"xx做了yy事情", e:"发现了异常!", df:"zz字段", dv:"0", dc:"1", d:1513152313000},
-                {un:"Suffer_2", uid:"xx_xxx_xxxx", on:"测试2", t:2, m:"xx做了yy事情", e:"发现了异常!", df:"zz字段", dv:"0", dc:"1", d:1513152313000},
-                {un:"Suffer_3", uid:"xx_xxx_xxxx", on:"测试3", t:3, m:"xx做了yy事情", e:"发现了异常!", df:"zz字段", dv:"0", dc:"1", d:1513152313000},
-                {un:"Suffer_4", uid:"xx_xxx_xxxx", on:"测试4", t:4, m:"xx做了yy事情", e:"发现了异常!", df:"zz字段", dv:"0", dc:"1", d:1513152313000},
+                {un:"Suffer", uid:"xx_xxx_xxxx", on:"测试", t:0, m:"xx做了yy事情", df:"zz字段", dv:"0", dc:"1", d:1513152313000},
+                {un:"Suffer_1", uid:"xx_xxx_xxxx", on:"测试1", t:1, m:"xx做了yy事情", df:"zz字段", dv:"0", dc:"1", d:1513152313000},
+                {un:"Suffer_2", uid:"xx_xxx_xxxx", on:"测试2", t:2, m:"xx做了yy事情",  df:"zz字段", dv:"0", dc:"1", d:1513152313000},
+                {un:"Suffer_3", uid:"xx_xxx_xxxx", on:"测试3", t:3, m:"xx做了yy事情",  df:"zz字段", dv:"0", dc:"1", d:1513152313000},
+                {un:"Suffer_4", uid:"xx_xxx_xxxx", on:"测试4", t:4, m:"xx做了yy事情",  df:"zz字段", dv:"0", dc:"1", d:1513152313000},
                 {un:"Suffer_5", uid:"xx_xxx_xxxx", on:"测试5", t:5, m:"xx做了yy事情", e:"发现了异常!", df:"zz字段", dv:"0", dc:"1", d:1513152313000},
             ]
             this.page.total = 100
