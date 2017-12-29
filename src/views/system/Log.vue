@@ -27,7 +27,7 @@
                 <i-button type="primary" shape="circle" icon="ios-search" @click.native="_search()"></i-button>
             </Form-item>
             <Form-item class="fr">
-                <ExportButton :form="form" entity="log"></ExportButton>
+                <ExportButton :form="form" entity="Log"></ExportButton>
             </Form-item>
         </i-form>
 
@@ -82,11 +82,19 @@
                 ],
                 logType:[
                     {text:"默认",value:0},
-                    {text:"类型_1",value:1},
-                    {text:"类型_2",value:2},
-                    {text:"类型_3",value:3},
-                    {text:"类型_4",value:4},
+                    {text:"新增",value:1},
+                    {text:"更新",value:2},
+                    {text:"删除",value:3},
+                    {text:"系统",value:4},
                     {text:"错误",value:5},
+                    {text:"数据",value:6},
+                    {text:"清洗",value:7},
+                    {text:"导出",value:8},
+                    {text:"登录",value:10},
+                    {text:"登出",value:11},
+                    {text:"上传",value:12},
+                    {text:"下载",value:13},
+                    {text:"后退",value:14},
                 ],
             }
         },
@@ -96,10 +104,10 @@
                 return cc?cc.text:""
             },
             GtDate (v) {
-                this.form.search_GT_d = v
+                this.form.s_GT_d = v
             },
             LtDate (v) {
-                this.form.search_LT_d = v
+                this.form.s_LT_d = v
             },
             showError (i){
                 const l = this.datas[i]
