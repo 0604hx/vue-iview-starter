@@ -11,6 +11,7 @@ global.C = window.C = Consts
 
 //引入通用工具类
 import 'U'
+import commonViews from './components/common'
 
 
 // 引入 iview
@@ -18,7 +19,7 @@ import iview from 'iview'
 import 'iview/dist/styles/iview.css'
 // import './assets/main.css'
 Vue.use(iview)
-
+Vue.use(commonViews)
 
 import moment from 'moment'
 moment.locale('zh_cn')
