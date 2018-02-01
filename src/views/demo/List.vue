@@ -52,12 +52,8 @@
 
 <script>
     import P from '@/macro/page.tpl.vue'
-    import ExportButton from 'C/common/export.vue'
 
     export default P.extend({
-        components: {
-            ExportButton
-        },
         data () {
             return {
                 columns: [
