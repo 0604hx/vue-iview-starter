@@ -4,10 +4,12 @@
  */
 import ExportButton from './export.vue'
 import Chart from 'C/chart/basic.vue'
+import CodeMirror from "./codemirror.vue"
 
 const views = {
     ExportButton,
-    Chart
+    Chart,
+    CodeMirror
 }
 
 const install = function (Vue, opts = {}) {
