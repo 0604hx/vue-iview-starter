@@ -5,11 +5,13 @@
 import ExportButton from './export.vue'
 import Chart from 'C/chart/basic.vue'
 import CodeMirror from "./codemirror.vue"
+import Loading from "./loading.vue"
 
 const views = {
     ExportButton,
     Chart,
-    CodeMirror
+    CodeMirror,
+    Loading
 }
 
 const install = function (Vue, opts = {}) {
