@@ -13,8 +13,8 @@
 
 <template>
   <div class="main" :class="{'main-hide-text': shrink}">
-    <div class="sidebar-menu-con" :style="{width: shrink?'60px':'200px', overflow: shrink ? 'visible' : 'auto'}">
-      <div class="shrinkable-menu" style="background: rgb(73, 80, 96);">
+    <div class="sidebar-menu-con" :style="{width: shrink?'60px':'200px', overflow: shrink ? 'hidden' : 'hidden'}">
+      <div class="shrinkable-menu" :style="{width: shrink?'80px':'220px'}" style="background: rgb(73, 80, 96);">
         <Menubar :shrink="shrink"></Menubar>
       </div>
     </div>
