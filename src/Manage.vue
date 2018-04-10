@@ -69,7 +69,7 @@
     data() {
       return {
         shrink: false,
-        userName: '请先登录',
+        userName: '未授权',
         menuList: []
       };
     },

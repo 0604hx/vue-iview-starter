@@ -20,6 +20,7 @@
 2. 打包项目时不生成 `map文件`，如需打开请设置 `config/index.js` 的 `productionSourceMap` 为 `true`
 3. 打包时压缩 js、css 文件，如需关闭请设置 `config/index.js` 的 `productionGzip` 为 `false`
 
+
 ### 鸣谢
 
 [iview-admin](https://github.com/iview/iview-admin/blob/dev/src/views/Main.vue)
@@ -47,3 +48,19 @@ num run zip-only
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+
+## 更新日志
+
+### v.1.0.0
+
+* 新建项目
+* 实现基本列表演示
+
+### v.1.0.1
+
+* iview 版本更新到 `2.12.0`
+* 修改全局字体（参考 [ant-design](https://github.com/ant-design/ant-design/) ）
+* 隐藏菜单栏滚动条、全局滚动条样式
+* 更改登录页面（参考 [ant-design-pro](https://github.com/ant-design/ant-design-pro))
+

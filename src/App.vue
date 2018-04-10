@@ -39,6 +39,10 @@ export default {
       background-color: #555; 
   } 
   body {
+    width: 100%;
     font-family:"Monospaced Number","Chinese Quote",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  body,html,#app {
+    height: 100%;
   }
 </style>
