@@ -10,12 +10,13 @@ let loginRouter = {
   component: resolve => require(['./views/Login'], resolve)
 }
 
-let page404 = { path: '/*', meta:{title: '404-页面不存在'}, name: 'error-404', component: resolve => require(['@/views/common/404.vue'], resolve) }
+let page404 = { path: '/404', meta:{title: '404-页面不存在'}, name: 'error-404', component: resolve => require(['@/views/common/404.vue'], resolve) }
 
 let appRouter = {
   path: "/",
   name: "manage",
   title: "manage-main",
+  redirect:"/demo/index",
   component: Main,
   children:[
     { path: '/demo/index', meta:{title:"演示页面"}, name: 'demo', component: resolve => require(['./views/demo/Index'], resolve) },
