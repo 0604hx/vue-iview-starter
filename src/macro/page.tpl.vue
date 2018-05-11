@@ -49,7 +49,8 @@
                         add:path+"/add"+suffix,
                         addDo:path+"/add"+suffix,
                         edit:path+"/edit"+suffix,
-                        editDo:path+"/edit"+suffix
+                        editDo:path+"/edit"+suffix,
+                        clean:path+"/clean"+suffix
                     }
                     this.api = a
                 }else
@@ -88,17 +89,22 @@
                     this.api.list,
                     Object.assign({page:M.page.current, pageSize:M.page.pageSize},M.page.params,this._formBeforeLoad(),ps||{}),
                     (d)=>{
-                M.page.total = d.total
-                //计算耗时
-                const endT=(new Date()).getTime();
-                M.page.info="加载"+d.data.length+"条数据，耗时"+(endT-startT)/1000+"秒(数据总量"+M.page.total+")";
+                        M.page.total = d.total
+                        //计算耗时
+                        const endT=(new Date()).getTime();
+                        M.page.info="加载"+d.data.length+"条数据，耗时"+(endT-startT)/1000+"秒(数据总量"+M.page.total+")";
 
-                //如果存在onPageLoaed方法，则调用
-                if(typeof(M.onPageLoaded)==='function')
-                    M.onPageLoaded()
-                M.datas=d.data
-            }
-            )
+                        /*
+                        如果存在 onData 方法，则调用此方法进行数据处理
+                        注意上述方法需要返回 List
+                        add on 2018年5月11日10:40:15
+                        */
+                        M.datas = typeof(M.onData)==='function'?M.onData(d.data) : d.data
+                        //如果存在onPageLoaed方法，则调用
+                        if(typeof(M.onPageLoaded)==='function')
+                            M.onPageLoaded()
+                    }
+                )
             },
             _search (){
                 this._load(1)
@@ -182,6 +188,22 @@
                     RESULT(this.api.del,{ids:[t.id]},(d)=>{
                         if(onDel) onDel(t)
                         this.datas.splice(index,1)
+                    })
+                })
+            },
+            /**
+             * 根据当前查询条件批量删除数据
+             * 
+             * ！！慎用！！
+             */ 
+             _delWithForm (){
+                let filter = this._formBeforeLoad()
+                if(!Object.keys(filter).find(k=>!!filter[k].replace(/\s/g,"")))
+                    return M.notice.warn("检测到当前筛选条件为空，不能继续操作！")
+                M.confirm("批量移除","确定删除当前筛选条件下的数据记录吗？ <br><br><b class='warning'>注意：删除后不能撤销</b>", ()=>{
+                    RESULT(this.api.clean, Object.assign(this.page.params, filter),d=>{
+                        M.notice.ok(d.message)
+                        this._load()
                     })
                 })
             },

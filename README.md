@@ -26,6 +26,7 @@
 [iview-admin](https://github.com/iview/iview-admin/blob/dev/src/views/Main.vue)
 
 ## 如何使用
+> 建议使用`VSCode`进行开发，推荐安装`VueHelper`插件
 
 ``` bash
 # install dependencies
@@ -64,3 +65,9 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 * 隐藏菜单栏滚动条、全局滚动条样式
 * 更改登录页面（参考 [ant-design-pro](https://github.com/ant-design/ant-design-pro))
 
+### v.1.0.2
+
+* `vue` 升级到 `2.5.16`
+* `iview` 升级到 `2.13.1`
+* `page.tpl.vue` 增加 `_delWithForm` 方法（需要后端的支持，对应api `clean`）
+* 增加`upload`组件及其演示
