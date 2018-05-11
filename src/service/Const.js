@@ -2,7 +2,7 @@
  * 系统常量
  */
 export default {
-    version: "1.0.3",
+    version: "1.0.2",
 
     /**
      * 定制 codemirror 选项
