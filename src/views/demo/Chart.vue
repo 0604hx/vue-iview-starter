@@ -28,7 +28,7 @@
                 <Icon type="map"></Icon>
                 柱状图（通过 <em>data</em> 快速定义，只处理单个 series）
             </p>
-            <Chart title="全球人口密度" :data="columnData" type="area" ytitle="人口" height="400"></Chart>
+            <Chart title="全球人口密度" :data="columnData" type="area" ytitle="人口" :height="400"></Chart>
         </Card>
     </div>
 </template>

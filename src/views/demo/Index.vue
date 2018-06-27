@@ -11,7 +11,7 @@
 </style>
 
 <template>
-    <div class="demoDiv">
+    <div class="demoDiv content">
         <h2>欢迎来到 {{name}} <small>version={{version}}</small></h2>
         <div class="section">
             <h3>日期工具</h3>

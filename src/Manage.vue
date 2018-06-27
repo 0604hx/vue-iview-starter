@@ -35,7 +35,7 @@
             <Row type="flex" justify="end" align="middle" class="user-dropdown-innercon">
                 <Dropdown transfer trigger="click" @on-click="handleClickUserDropdown" placement="bottom-end">
                   <a href="javascript:void(0)">
-                      <Avatar size="large" style="background: #619fe7;">{{userName}}</Avatar>
+                      <Avatar size="large">{{userName}}</Avatar>
                   </a>
                   <DropdownMenu slot="list">
                     <DropdownItem name="ownSpace">个人中心</DropdownItem>

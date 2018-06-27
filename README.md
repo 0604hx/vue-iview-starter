@@ -71,3 +71,9 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 * `iview` 升级到 `2.13.1`
 * `page.tpl.vue` 增加 `_delWithForm` 方法（需要后端的支持，对应api `clean`）
 * 增加`upload`组件及其演示
+
+### v.1.0.3
+
+* `iview` 升级到`2.14.3`
+* 增加主题模板（修改 src/theme.less 可修改主色调）
+* 更改404页面，资源来自[mateossh](https://github.com/mateossh/404)

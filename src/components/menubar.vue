@@ -73,10 +73,9 @@
             text:"演示功能",
             child:[
                 {to:"/demo/index", icon:"ios-analytics-outline",text:"演示主页"},
-                {to:"/demo/list", icon:"ios-analytics-outline",text:"列表演示"},
+                {to:"/demo/list", icon:"ios-list-outline",text:"列表演示"},
                 {to:"/demo/chart", icon:"ios-pie-outline",text:"图表、地图"},
                 {to:"/demo/code-editor", icon:"code",text:"代码编辑器"},
-                {to:"/demo/list", icon:"ios-analytics-outline",text:"列表演示"},
                 {to:"/demo/upload", icon:"ios-upload",text:"文件上传"},
             ]
         },

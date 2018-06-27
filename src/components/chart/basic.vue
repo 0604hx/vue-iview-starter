@@ -35,7 +35,6 @@
                 if (this.data)
                     this.figureOption()
 
-                console.log(this.data, this.ops)
                 if (this.ops && this.ops.series)
                     this.chart = Highcharts.chart(this.$el, this.ops)
             },

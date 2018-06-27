@@ -45,25 +45,33 @@
                 types:['默认','新增','更新','删除','系统','错误','数据','清洗','登出','登录','上传','下载','后退'],
                 columns: [
                     { title: "", type: "index", width: 40 },
-                    { title: "用户名", key: "un", width: 120, sortable: true },
-                    { title: "用户id", key: "uid" },
-                    { title: "模块名", key: "on" },
-                    { title:"类型", key:"t", sortable:true,
-                        render:(h,p)=>this.types[p.row.t]
+                    { 
+                        title: "用户名", key: "un", width: 120, sortable: true,
+                        render:(h,p)=>{
+                            return h("span",{
+                                attrs:{title:"用户ID: "+p.row.uid}
+                            }, p.row.un)
+                        }
+                    },
+                    { title: "模块名", key: "on", width:180 },
+                    { 
+                        title:"类型", key:"t", sortable:true, width: 100,
+                        render:(h,p)=> {
+                            return h('span', this.types[p.row.t])
+                        }
                     },
                     { title: "描述", key: "m",
                         render:(h,p)=>{
                             const cs =[]
-                            if(p.row.m) cs.push(h('p',p.row.m))
                             if(p.row.e) cs.push(h('Button',{
+                                'class':"mr10",
                                 props:{type:'error',size:"small"},
                                 on:{
-                                    click:()=>{
-                                      this.showError(p.index)
-                                    }
+                                    click:()=>this.showError(p.index)
                                 }
-                              }, "查看错误信息")
+                              }, "错误信息")
                             )
+                            if(p.row.m) cs.push(h('span',p.row.m))
                             return h('p',cs)
                         }
                     },
