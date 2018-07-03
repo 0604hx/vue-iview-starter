@@ -76,4 +76,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 * `iview` 升级到`2.14.3`
 * 增加主题模板（修改 src/theme.less 可修改主色调）
-* 更改404页面，资源来自[mateossh](https://github.com/mateossh/404)
+* 更改 404 页面，资源来自[mateossh](https://github.com/mateossh/404)
+* 修复`SubMenu`主键重复的 issue
+* 增加 UI 样式（`code`, `h2`, `h3`等）
+* 调整 `404` 页面的路由设置

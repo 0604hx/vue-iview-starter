@@ -27,14 +27,20 @@ let appRouter = {
 
     // 系统相关
     { path: '/sys/log', meta:{title:"日志-系统管理"}, name: 'sys-log', component: resolve => require(['./views/system/Log'], resolve) },
-
-    page404
   ]
 }
 
 let routes = [
   loginRouter,
-  appRouter
+  appRouter,
+  {
+    path:"/*",
+    redirect:"/404",
+    component: Main,
+    children:[
+      page404
+    ]
+  }
 ]
 
 export default new Router({

@@ -15,7 +15,7 @@
                 </router-link>
             </MenuGroup>
 
-            <Submenu v-if="menu.type=='Sub'" name="$i">
+            <Submenu v-if="menu.type=='Sub'" :name="$i">
                 <template slot="title">
                     <Icon :type="menu.icon" :color="menu.color"></Icon>
                     <span class="layout-text" v-text="menu.text"></span>
