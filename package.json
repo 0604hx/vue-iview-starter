@@ -15,7 +15,7 @@
     "axios": "^0.17.1",
     "countup": "^1.8.2",
     "highcharts": "^6.0.4",
-    "iview": "^2.14.3",
+    "iview": "^3.0.0",
     "moment": "^2.22.1",
     "querystring": "^0.2.0",
     "store": "^2.0.12",

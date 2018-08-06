@@ -1,7 +1,7 @@
 <!--list 演示程序，继承于 macro/page.tpl.vue-->
 <template>
     <div>
-        <Alert show-icon>
+        <Alert type="warning" show-icon>
             列表演示页面
             <template slot="desc">
                 <ol style="list-style-type:decimal;counter-reset:sectioncounter; padding-left:12px">
@@ -63,7 +63,7 @@
                     { title: "备注信息", key: "remark" },
                     { title: "录入日期", key: "addDate", width: 155, sortable: true, render: (h, p) => { return h('p', D.datetime(p.row.addDate)) } },
                     {
-                        title: "操作", width: 150,
+                        title: "操作", width: 160,
                         renderHeader: (h, p) => {
                             return h('div', [
                                 h('span', "操作"),
@@ -72,7 +72,7 @@
                                         ml10: true,
                                     },
                                     attrs: { title: "新增业务员" },
-                                    props: { size: "small", type: "ghost", shape: "circle", icon: "ios-plus-empty" },
+                                    props: { size: "small",  shape: "circle", icon: "md-add" },
                                     nativeOn: {
                                         click: () => this._add("name")
                                     }
@@ -85,14 +85,14 @@
                                 h('ButtonGroup', [
                                     h('Button', {
                                         attrs: { title: "编辑此数据"},
-                                        props: { type: "ghost", icon: "edit"},
+                                        props: { icon: "ios-create-outline"},
                                         nativeOn: {
                                             click: () => this._edit(p.index)
                                         }
                                     }),
                                     h('Button', {
                                         attrs: { title: "修改密码"},
-                                        props: { type: "ghost", icon: "ios-locked"},
+                                        props: { icon: "ios-lock"},
                                         nativeOn: {
                                             click: () => M.info("此功能正在开发中...")
                                         }
@@ -107,7 +107,7 @@
                                         h('Button',{
                                             class:'menuBtn',
                                             attrs: {title:"点击展开更多菜单"},
-                                            props:{type:"ghost",icon:'arrow-down-b'}
+                                            props:{icon:'md-arrow-dropdown'}
                                         }),
                                         h('Dropdown-menu',
                                             {slot:"list"},

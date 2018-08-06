@@ -9,7 +9,7 @@
             <MenuGroup v-if="menu.type=='Group'" :title="menu.text">
                 <router-link v-for="(m, $mi) in menu.child" :key="$mi" v-if="!!m.to" :to="m.to" :title="m.text">
                     <MenuItem :name="menuName(m.to)">
-                    <Icon :type="m.icon" :color="m.color"></Icon>
+                    <Icon :type="m.icon" :color="m.color" :size="iconSize"></Icon>
                     <span class="layout-text" v-text="m.text"></span>
                     </MenuItem>
                 </router-link>
@@ -17,12 +17,12 @@
 
             <Submenu v-if="menu.type=='Sub'" :name="$i">
                 <template slot="title">
-                    <Icon :type="menu.icon" :color="menu.color"></Icon>
+                    <Icon :type="menu.icon" :color="menu.color" :size="iconSize"></Icon>
                     <span class="layout-text" v-text="menu.text"></span>
                 </template>
                 <router-link v-for="(m, $mi) in menu.child" :key="$mi" v-if="!!m.to" :to="m.to" :title="m.text">
                     <MenuItem :name="menuName(m.to)">
-                    <Icon :type="m.icon" :color="m.color"></Icon>
+                    <Icon :type="m.icon" :color="m.color" :size="iconSize"></Icon>
                     <span class="layout-text" v-text="m.text"></span>
                     </MenuItem>
                 </router-link>
@@ -30,7 +30,7 @@
 
             <router-link  v-if="!!menu.to" :to="menu.to" :title="menu.text">
                 <MenuItem :name="menuName(menu.to)">
-                <Icon :type="menu.icon" :color="menu.color"></Icon>
+                <Icon :type="menu.icon" :color="menu.color" :size="iconSize"></Icon>
                 <span class="layout-text" v-text="menu.text"></span>
                 </MenuItem>
             </router-link>
@@ -92,6 +92,7 @@
         props: ["shrink"],
         data(){
             return {
+                iconSize: 16,
                 menus:menus
             }
         },

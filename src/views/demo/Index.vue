@@ -27,7 +27,7 @@
                     <InfoCard
                         id-name="register-today"
                         :end-val="100"
-                        iconType="person-stalker"
+                        iconType="md-people"
                         color="#ffd572"
                         intro-text="今日注册用户"
                     ></InfoCard>
@@ -45,7 +45,7 @@
                     <InfoCard
                         id-name="visit"
                         :end-val="9875841"
-                        iconType="android-unlock"
+                        iconType="ios-unlock"
                         color="#64d572"
                         intro-text="今日访问量"
                     ></InfoCard>
@@ -54,7 +54,7 @@
                     <InfoCard
                         id-name="comment"
                         :end-val="78"
-                        iconType="ios-chatbubble"
+                        iconType="ios-chatbubbles"
                         color="#f25e43"
                         intro-text="今日留言&评论"
                     ></InfoCard>

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Alert show-icon>
+        <Alert type="warning" show-icon>
             <div>
                 编辑器使用 <code>vue-codemirror-lite</code>，默认配置为：
                 <pre style="background:#fefefe">

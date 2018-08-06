@@ -1,6 +1,6 @@
 # vue-iview-starter
 
-> vue + iview + webpack starter
+> vue + iview + webpack starter 💛
 
 ![](static/login.png)
 
@@ -26,7 +26,7 @@
 [iview-admin](https://github.com/iview/iview-admin/blob/dev/src/views/Main.vue)
 
 ## 如何使用
-> 建议使用`VSCode`进行开发，推荐安装`VueHelper`插件
+> 建议使用`VSCode`进行开发，推荐安装`VueHelper`插件 👍
 
 ``` bash
 # install dependencies
@@ -80,3 +80,8 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 * 修复`SubMenu`主键重复的 issue
 * 增加 UI 样式（`code`, `h2`, `h3`等）
 * 调整 `404` 页面的路由设置
+
+### v.1.0.4
+
+* `iview` 升级到 `3.0.0` 
+* demo 页面适配 iview 新版本（较多组件都发生变化，如 Button、Icon，需要耐心修改）🔋
