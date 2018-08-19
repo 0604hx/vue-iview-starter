@@ -37,6 +37,13 @@ let S = {
     },
 
     /**
+     * token 刷新依据：token_time 与当前时间相差超过 20 分钟
+     */
+    isNeedRefreshToken (){
+        return _time() - store.get(token_time)>= 20*60*1000
+    },
+
+    /**
      * 
      * @param {*} newToken 
      * @param {*} cb 
@@ -56,8 +63,9 @@ let S = {
      * TOKEN ：上次登录的 TOKEN值
      */
     load (){
-        window.SERVER = store.get(server)
-        console.log(`load server ip : ${SERVER}`)
+        window.SERVER = store.get(server) || ""
+        if(window.SERVER) console.log(`loaded server ip : ${SERVER}`)
+
         window.TOKEN = store.get(token)
         let tokenTime = store.get(token_time)
         //判断token是否过期

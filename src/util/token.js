@@ -34,6 +34,8 @@ let cleanToken = ()=>{
  * 从服务端中获取最新的 token
  */
 let refreshTokenFromServer = ()=>{
+    if(!S.isNeedRefreshToken()) return
+    
     console.log(`[${D.time()}] start to refresh token from server...`)
     RESULT("/token/refresh",{}, d=>{
         refreshToken(d.data)
