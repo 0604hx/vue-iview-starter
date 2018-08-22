@@ -85,3 +85,5 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 * `iview` 升级到 `3.0.0` 
 * demo 页面适配 iview 新版本（较多组件都发生变化，如 Button、Icon，需要耐心修改）🔋
+* 调整左侧`菜单`项的高度
+* 增加`JWT`的支持（在 `Login.vue`、`util/index.js`中把相关注释去掉即可开启），后端可以参考[boot-mongo-starter](https://github.com/0604hx/boot-mongo-starter)

@@ -9,6 +9,7 @@
     display: none;
   }
   .main-hide-text .ivu-menu-vertical .ivu-menu-submenu-title-icon {float: none !important}
+  .navicon-con .ivu-btn-text:focus {box-shadow: 0 0 0 0px rgba(0, 168, 84, 0.2) !important}
 </style>
 
 <template>
@@ -23,7 +24,7 @@
       <div class="main-header">
         <div class="navicon-con">
           <Button :style="{transform: 'rotateZ(' + (this.shrink ? '-90' : '0') + 'deg)'}" type="text" @click="toggleClick">
-            <Icon type="navicon" size="32"></Icon>
+            <Icon type="md-menu" size="32"></Icon>
           </Button>
         </div>
         <div class="header-middle-con">

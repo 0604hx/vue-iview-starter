@@ -81,6 +81,7 @@
     }
 </style>
 <script>
+
     let NEXT = "demo"
 
     export default{
@@ -113,6 +114,25 @@
                     if (valid) {
                         this.$router.replace({name:NEXT})
                         M.notice.ok("在这里编写您的登录逻辑（默认跳转到 /demo)","登录成功")
+
+                        // ================TOKEN 方式时请使用如下代码================
+                        // import S from 'U/store'
+                        // import T from 'U/token'
+
+                        // S.set("account", this.account.name)
+
+                        // /**
+                        // * 先刷新 token，然后加载个人信息，以便后续的程序用到 ACCOUNT
+                        // */ 
+                        // T.refreshToken(d.data, () => {
+                        //     T.loadAccount(dd=>{
+                        //         E.$emit("login-done", dd)
+
+                        //         const redirect = decodeURIComponent(this.$route.query.redirect || NEXT);
+                        //         this.$router.replace(redirect);
+                        //     })
+                        // })
+                        // ================TOKEN 方式时请使用以上代码================
                     } else {
                         M.warn("请填写登录信息")
                     }
