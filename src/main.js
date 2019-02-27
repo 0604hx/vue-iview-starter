@@ -5,19 +5,19 @@ import router from './router'
 
 
 //引入常量
-import Consts from 'S/Const'
+import Consts from '@/Const'
 global.C = window.C = Consts
+Vue.prototype.C = Consts
 
 
 //引入通用工具类
-import 'U'
-import commonViews from './components/common'
+import '@U'
+import commonViews from '@C/common'
 
 
 // 引入 iview
 import iview from 'iview'
-// import 'iview/dist/styles/iview.css'
-import './theme.less'
+import '@T/theme.less'
 
 // import './assets/main.css'
 Vue.use(iview)
@@ -31,22 +31,7 @@ Vue.prototype.today = (d) => { return window.D.today() }
 Vue.prototype.date = (d) => { return window.D.date(d) }
 Vue.prototype.datetime = (d) => { return window.D.datetime(d) }
 Vue.prototype.filesize = (mem) => { return window.H.filesize(mem) }
-
-
-router.beforeEach((to, from, next) => {
-  iview.LoadingBar.start();
-  if(to.meta.title)  window.document.title = to.meta.title
-
-  next()
-
-  iview.LoadingBar.finish();
-})
-router.afterEach(route => {
-  iview.LoadingBar.finish()
-
-  window.scrollTo(0, 0)
-})
-
+Vue.prototype.thousand = t=> window.H.toThousands(t)
 
 Vue.config.productionTip = false
 // Vue.config.silent = true

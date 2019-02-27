@@ -15,3 +15,5 @@ yarn.lock
 *.ntvs*
 *.njsproj
 *.sln
+
+static.zip

@@ -51,7 +51,7 @@
 </style>
 
 <script>
-    import P from '@/macro/page.tpl.vue'
+    import P from '@M/page.tpl.vue'
 
     export default P.extend({
         data () {

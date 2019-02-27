@@ -1,24 +1,19 @@
 # vue-iview-starter
 
-> vue + iview + webpack starter 💛
+> vue-cli3 + iview3 starter 💛
 
-![](static/login.png)
+![登录页面（模仿inspinia）](docs/screenshots/login-v3.png)
 
-![demo](static/demo.png)
+![演示页面-首页](docs/screenshots/demo-index.png)
 
-![](static/data-list.png)
-
-![](static/demo-chart.png)
-
-![](static/demo-code.png)
+![演示页面-地图](docs/screenshots/demo-map.png)
 
 ## 说明
 
-此项目基于[vue-webpack-template](https://github.com/vuejs-templates/webpack)构建，并作了以下调整：
+此项目基于[vue-cli3](https://cli.vuejs.org/)构建，并作了以下调整：
 
-1. 不使用 PostCSS：`webpack.dev.conf.js`、`webpack.prod.conf.js` 中的 `usePostCSS` 均设置为 `false`
-2. 打包项目时不生成 `map文件`，如需打开请设置 `config/index.js` 的 `productionSourceMap` 为 `true`
-3. 打包时压缩 js、css 文件，如需关闭请设置 `config/index.js` 的 `productionGzip` 为 `false`
+1. 默认加载`font-awesome4.7.0`（在`index.html`中引入）
+2. `proxy.js`定义开发阶段的请求转发
 
 
 ### 鸣谢
@@ -33,13 +28,10 @@
 npm install
 
 # serve with hot reload at localhost:8080
-npm run dev
+npm run dev 或者 npm run serve
 
 # build for production with minification
 npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
 
 # 构建并打包成 static.zip
 npm run zip
@@ -52,6 +44,16 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 
 ## 更新日志
+> `2019年2月27日` 升级到`2.x`
+
+### v.2.0.0
+- [x] 基于`vue-cli3`搭建
+- [x] 重构部分代码及目录结构
+- [x] 新增两个登录页面（详见`src/views/login/Login.2.vue`,`src/views/login/Login.3.vue`）
+- [x] 优化`http.js`，支持 JSON 格式数据的提交
+- [x] 优化右侧菜单栏（再次感谢[iview-admin](https://github.com/iview/iview-admin)）
+
+==============================================================================
 
 ### v.1.0.0
 

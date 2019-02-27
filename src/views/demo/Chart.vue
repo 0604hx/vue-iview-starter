@@ -34,8 +34,8 @@
 </template>
 
 <script>
-    import MapCountry from 'C/chart/map.world.vue'
-    import Chart from 'C/chart/basic.vue'
+    import MapCountry from '@C/chart/map.world.vue'
+    import Chart from '@C/chart/basic.vue'
 
     export default {
         components: {

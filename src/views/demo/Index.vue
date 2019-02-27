@@ -70,8 +70,8 @@
                 M.notice.ok('message','title')  <br>
             </div>
             <Button @click="tip(false)" type="info">显示简短提醒</Button>
-            <Button @click="tip(true)" type="success">显示Notice</Button>
-            <Button @click="$router.push('/404')" type="warning">404 页面</Button>
+            <Button @click="tip(true)" class="ml10" type="success">显示Notice</Button>
+            <Button @click="$router.push('/404')" class="ml10" type="warning">跳转到 404 页面</Button>
         </div>
 
         <div class="section">
@@ -88,11 +88,11 @@
     */
     // import TablePage from 'M/table.page.vue'
     
-    import InfoCard from 'C/common/inforCard.vue'
+    import InfoCard from '@C/common/inforCard.vue'
 
     export default {
         components: {
-            TablePage:require('M/table.page.vue').default,
+            TablePage:require('@M/table.page.vue').default,
             InfoCard
         },
         data () {

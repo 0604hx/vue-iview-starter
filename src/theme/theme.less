@@ -1,0 +1,51 @@
+@import '~iview/src/styles/index.less';
+
+// Here are the variables to cover, such as:
+@primary-color: #8c0776;        //紫色
+// @primary-color: #e96500;       //黄色
+// @primary-color: #00a854;       //绿色
+
+@menu-dark-title: #001529;
+@menu-dark-active-bg: #000c17;
+@layout-sider-background: #001529;
+.shrinkable-menu {
+    background: @layout-sider-background;
+}
+
+.content {
+    h2 {
+        font-size: 18px;
+        padding-left: 10px;
+        margin: 20px 0;
+        border-left: 8px solid @primary-color;
+    }
+    h3 {
+        font-size: 16px;
+        margin: 0px 2px 6px;
+        padding-left: 10px;
+        border-left: 6px solid @primary-color;
+    }
+    h4 {
+        margin: 0px 2px 6px;
+        padding-left: 10px;
+        border-left: 3px solid @primary-color;
+    }
+}
+
+/*MenuGroup 使用 SubMenu 同样的样式*/
+.ivu-menu-item-group {
+    .ivu-menu-item-active {
+        color: white !important;
+        background: @primary-color !important;
+    }
+}
+
+code {
+    background: #f7f7f7;
+    font-family: Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;
+    margin: 0 3px;
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: #666;
+    border: 1px solid #ddd;
+}

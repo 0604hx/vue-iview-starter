@@ -40,9 +40,10 @@ var _initAxios=(iView)=>{
 var _dealWithErrorRequest = (url,error, onFail)=>{
     iView.LoadingBar.finish();
     console.log('请求<b class="error">'+url+"</b>出错",error)
+    console.log(!!onFail && typeof(onFail)=='function', error.response)
     
     //如果 onFail 返回 true 则中断后续的异常处理
-    if(onFail)
+    if(!!onFail && typeof(onFail)=='function')
         if(onFail(error?error.response:null)) return
 
     if(error && !error.response){
@@ -50,8 +51,11 @@ var _dealWithErrorRequest = (url,error, onFail)=>{
         E.$emit("network.bad",error)
         return M.notice.error("网络请求发送失败，请检查你的网络是否通畅，服务端地址是否设置："+error,"网络请求失败",10)
     }
+    if(error.response.status==504) return M.notice.error("接口地址无法找到: "+url+"<br>"+error, "HTTP 504")
     if(error.response.status===403) return M.notice.error(error.response.data.message||"你没有操作权限")
     if(error.response.status===511) {
+        console.log("=.=...请先登录...=.=")
+        M.notice.error("你没有权限执行此操作（可能需要先登录）："+error.response.data.message, "服务器拒绝")
         //M.notice.error(error.response.data.message||"请先登录");
         // return window.location.href="#/login"
         E.$emit('navigateTo', 'login')
@@ -67,11 +71,12 @@ var _dealWithErrorRequest = (url,error, onFail)=>{
  * @param data
  * @param onOk
  * @param onFail
+ * @param json
  * @constructor
  */
-window.POST=(url,data,onOk,onFail)=>{
+window.POST=(url,data,onOk,onFail,json)=>{
     //提交数据到服务器
-    axios.post(window.SERVER + url, querystring.stringify(data||{})).then(function (response) {
+    axios.post(window.SERVER + url, json?data:querystring.stringify(data||{})).then(function (response) {
         if(response.status===200){
             if(onOk) onOk(response.data)
         }
@@ -99,9 +104,10 @@ window.GET=(url,data,onOk,onFail)=>{
  * @param data
  * @param onOk
  * @param onFail
+ * @param json
  * @constructor
  */
-window.RESULT=(url,data,onOk,onFail)=>{
+window.RESULT=(url,data,onOk,onFail,json=false)=>{
     POST(url,data,function (res) {
         if(res.success === true && onOk) onOk(res)
         else{
@@ -110,7 +116,7 @@ window.RESULT=(url,data,onOk,onFail)=>{
             M.notice.error(res.message,"操作失败",10)
             if(onFail) onFail(res)
         }
-    },onFail)
+    },onFail, json)
 }
 
 _initAxios(iView)
