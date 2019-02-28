@@ -4,7 +4,6 @@
             <template v-if="shrink" style="font-weight: bold; ">F.DT</template>
             <template v-else >iview-starter</template>
         </div>
-        <i class="fa fa-user"></i>
         <template v-for="(menu, $i) in menus">
             <MenuGroup v-if="menu.type=='Group'" :title="menu.text">
                 <router-link v-for="(m, $mi) in menu.child" :key="$mi" v-if="!!m.to" :to="m.to" :title="m.text">

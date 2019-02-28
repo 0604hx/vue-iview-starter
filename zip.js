@@ -4,6 +4,7 @@
  */
 const fs = require('fs')
 const archiver = require("archiver")
+const chalk = require('chalk')
 
 var dist = './dist'
 var zipFile = "./static.zip"
@@ -14,8 +15,8 @@ var archive = archiver('zip')
 
 // listen for all archive data to be written
 outputFile.on('close', function() {
-    console.log(archive.pointer() + ' total bytes');
-    console.log('archiver has been finalized and the output file is:'+outputFile.path);
+    console.log(chalk.green(archive.pointer() + ' total bytes'));
+    console.log(chalk.green('archiver has been finalized and the output file is:'+outputFile.path));
     outputFile.end()
 
     //拷贝文件到 ../target 下
@@ -36,5 +37,5 @@ archive.on('error', function(err) {
 archive.pipe(outputFile)
 archive.directory(dist, false)
 
-console.log("开始压缩前端文件："+dist)
+console.log(chalk.yellow("开始压缩前端文件："+dist))
 archive.finalize()

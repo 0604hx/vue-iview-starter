@@ -19,7 +19,9 @@ import commonViews from '@C/common'
 import iview from 'iview'
 import '@T/theme.less'
 
-// import './assets/main.css'
+// 实际打包时应该不引入mock
+// if (process.env.NODE_ENV !== 'production') require('@/mock')
+
 Vue.use(iview)
 Vue.use(commonViews)
 

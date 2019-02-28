@@ -4,10 +4,15 @@
  * @Author: 集成显卡@CIB 
  * @Date: 2019-01-18 09:19:37 
  * @Last Modified by: 集成显卡
- * @Last Modified time: 2019-02-27 10:25:55
+ * @Last Modified time: 2019-02-28 09:52:28
  */
 
 const yargs = require('yargs')
+const chalk = require('chalk')
+
+let log = function(){
+  console.log(chalk.cyan(...arguments))
+}
 
 /** 
  * 后端服务器 IP，对于不同的环境可以通过 
@@ -21,14 +26,14 @@ let customClusterHost = (cmdOptions={})=>{
   if(cmdOptions.cluster)
     clusterHost = cmdOptions.cluster
   
-  console.log("后端服务地址 = ", clusterHost)
+  log("后端服务地址 = ", clusterHost)
 }
 
 try{
   let argsMap = JSON.parse(process.env.npm_config_argv)['original'].slice(2)
   
   if(!!Object.keys(argsMap).length){
-    console.log('检测到用户自定义参数：', argsMap)
+    log('检测到用户自定义参数：', argsMap)
     argsMap = yargs.parse(argsMap)
   }
 
@@ -44,10 +49,10 @@ const prefixs = ['/dashboard', '/attach', '/sys', '/captcha-code','/login','/log
 //后端服务器地址
 
 const server = `http://${clusterHost}:${port}/`
-console.log("===========================================================\n")
-console.log("代理地址： "+server+"\n")
+log("===========================================================\n")
+log("代理地址： "+server+"\n")
 for(var i=0;i<prefixs.length;i++){
-    console.log("[HTTP代理] "+prefixs[i])
+    log("[HTTP代理] "+prefixs[i])
     proxies[prefixs[i]] = {
         target: server,
         changeOrigin: true,
@@ -55,5 +60,6 @@ for(var i=0;i<prefixs.length;i++){
         //ws: true,//websocket支持
     }
 }
-console.log("\n===========================================================")
+log("\n===========================================================")
+
 module.exports = proxies

@@ -53,7 +53,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 - [x] 优化`http.js`，支持 JSON 格式数据的提交
 - [x] 优化右侧菜单栏（再次感谢[iview-admin](https://github.com/iview/iview-admin)）
 
-==============================================================================
+---
 
 ### v.1.0.0
 
