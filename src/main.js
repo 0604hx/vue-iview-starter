@@ -18,6 +18,7 @@ import commonViews from '@C/common'
 // 引入 iview
 import iview from 'iview'
 import '@T/theme.less'
+import "@T/app.less"
 
 // 实际打包时应该不引入mock
 // if (process.env.NODE_ENV !== 'production') require('@/mock')
