@@ -2,11 +2,11 @@
     <!-- Main Footer -->
     <footer class="main-footer" :class="fixed?'fixed':''">
         <!-- To the right -->
-        <div class="pull-right hidden-xs">
+        <span class="hidden-xs">
             <b>VERSION</b> {{C.version}}
-        </div>
+        </span>
 
-        <FooterText></FooterText>
+        <FooterText class="fl"></FooterText>
     </footer>
 </template>
 
@@ -19,3 +19,16 @@
         }
     }
 </script>
+
+<style>
+    .main-footer {
+        padding: 6px 12px 6px 12px;
+        color: #555;
+        border-top: 1px solid #dee2e6;
+        background: #fff;
+        text-align: right;
+    }
+    .main-footer.fixed {
+        position: fixed;
+    }
+</style>

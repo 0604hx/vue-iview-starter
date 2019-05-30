@@ -12,14 +12,14 @@
     "zip": "vue-cli-service build && node zip.js"
   },
   "dependencies": {
-    "vue-codemirror-lite": "^1.0.3",
     "axios": "^0.18.0",
     "countup": "^1.8.2",
     "highcharts": "^7.0.3",
-    "iview": "^3.2.2",
+    "iview": "^3.4.2",
     "moment": "^2.24.0",
     "store": "^2.0.12",
     "vue": "^2.5.22",
+    "vue-codemirror-lite": "^1.0.3",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {

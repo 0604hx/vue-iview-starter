@@ -6,7 +6,7 @@ export default {
     company:"",
     developer:"集成显卡",
     email:"zxingming@foxmail.com",
-    version: "2.0.0",
+    version: "2.0.1",
 
     /**
      * 定制 codemirror 选项

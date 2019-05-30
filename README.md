@@ -46,6 +46,10 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 ## 更新日志
 > `2019年2月27日` 升级到`2.x`
 
+### v.2.0.1
+- [x] `iview` 升级到 `3.4.2`
+- [x] 增加新窗口打开页面的功能（详见 `src/views/demo/NewWindow.vue`）
+
 ### v.2.0.0
 - [x] 基于`vue-cli3`搭建
 - [x] 重构部分代码及目录结构

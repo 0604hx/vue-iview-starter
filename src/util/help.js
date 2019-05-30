@@ -80,6 +80,26 @@ let H={
             : KB > 0
                 ? KB + ' KB'
                 : mem + ' B'
+    },
+
+    /**
+     * 打开新窗口（如使用 Window.vue ）
+     * @param {*} url
+     * @param {*} w     窗口宽度（支持负数，如 -200， 表示总宽度 - 200）
+     * @param {*} h     窗口高度
+     */
+    open (url, w=1200, h=720){
+        //当参数宽度为负数时，则取窗口宽度减去该值
+        if(w < 0)
+            w = window.screen.availWidth + w
+        let iLeft = (window.screen.availWidth - 10 - w) / 2
+        let iTop = (window.screen.availHeight - 30 - h) / 2
+        
+        window.open(
+            url, 
+            "_blank", 
+            `top=${iTop},left=${iLeft},height=${h},innerHeight=${h},width=${w},innerWidth=${w},toolbar=no,menubar=no,scrollbars=auto,resizeable=no,location=no,status=no`
+        )
     }
 }
 

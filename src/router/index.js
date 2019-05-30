@@ -2,13 +2,14 @@
  * @Author: 集成显卡(https://github.com/0604hx) 
  * @Date: 2019-02-27 10:36:52 
  * @Last Modified by: 集成显卡
- * @Last Modified time: 2019-02-27 16:15:37
+ * @Last Modified time: 2019-05-30 15:50:15
  */
 import Vue from 'vue'
 import Router from 'vue-router'
 
 import initCheck from './CheckLogin'
 import Main from "@V/Main.vue"
+import WindowView from "@V/Window.vue"
 
 Vue.use(Router)
 
@@ -38,9 +39,18 @@ let appRouter = {
   ]
 }
 
+let blankRouter = {
+  path: '',
+  component: WindowView,
+  children: [
+    { path: '/demo/window', meta:{title:"新窗口颜色"}, name: 'demo-window', component: resolve => require(['@V/demo/NewWindow'], resolve) },
+  ]
+}
+
 let routes = [
   ...loginRouter,
   appRouter,
+  blankRouter,
   {
     path:"/*",
     redirect:"/404",

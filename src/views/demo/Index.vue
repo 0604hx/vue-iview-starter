@@ -75,6 +75,15 @@
         </div>
 
         <div class="section">
+            <h3>新窗口打开</h3>
+            
+            <Button @click="newWindow">在新窗口打开页面</Button>
+            <div class="h">
+                示例代码：window.H.open('/#/demo/window', 1250)
+            </div>
+        </div>
+
+        <div class="section">
             <h3>列表及分页</h3>
             <small>请点击菜单中的”列表演示“</small>
         </div>
@@ -112,6 +121,9 @@
                     M.notice.ok(`hello ${this.name}`,'Notice 类型提示')
                 else
                     M.info(`hello ${this.name}`)
+            },
+            newWindow (){
+                window.H.open('/#/demo/window', 1250)
             }
         }
     }
