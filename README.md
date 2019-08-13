@@ -3,10 +3,9 @@
 > vue-cli3 + iview3 starter 💛
 
 ![登录页面（模仿inspinia）](docs/screenshots/login-v3.png)
-
 ![演示页面-首页](docs/screenshots/demo-index.png)
-
 ![演示页面-地图](docs/screenshots/demo-map.png)
+![演示页面-地图](docs/screenshots/demo-reset-pwd.png)
 
 ## 说明
 
@@ -35,9 +34,6 @@ npm run build
 
 # 构建并打包成 static.zip
 npm run zip
-
-# 只打包
-num run zip-only
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
@@ -45,6 +41,10 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ## 更新日志
 > `2019年2月27日` 升级到`2.x`
+
+### v.2.1.0
+- [x] 升级`vue`、`vue-router`、`vue-cli`等控件的版本
+- [x] 优化界面
 
 ### v.2.0.1
 - [x] `iview` 升级到 `3.4.2`

@@ -39,8 +39,10 @@
         white-space:nowrap;
         position: absolute;
     }
-    .main-hide-text .layout-text{
-        display: none;
+    .main-hide-text {
+        .layout-text {
+            display: none;
+        }
     }
     &-content-container{
         position: relative;
@@ -108,12 +110,18 @@
         }
         .header-middle-con{
             position: absolute;
-            left: 60px;
+            left: 24px;
             top: 0;
             right: 340px;
             bottom: 0;
             padding: 10px;
             overflow: hidden;
+
+            .main-breadcrumb {
+                font-size: 1.15rem;
+                color: #fafbfc;
+                padding: 0px 15px 0px;
+            }
         }
         .header-avator-con{
             position: absolute;
@@ -194,8 +202,9 @@
         top: 60px;
         right: 0;
         bottom: 0;
-        overflow: auto;
-        background-color: #fafafa;
+        overflow-y: auto;
+        overflow-x: hidden;
+        background-color: #f1f2f3;
         z-index: 1;
         transition: left .3s;
         .single-page{
@@ -220,6 +229,23 @@
     }
 }
 
-.ivu-menu-vertical .ivu-menu-item {
-    padding: 8px 24px;
+.mainMenu {
+    &.thin {
+        .ivu-menu-item,.ivu-menu-submenu-title {
+            padding: 8px 24px;
+        }
+        .ivu-menu-item-group-title {
+            height: 36px;
+            line-height: 36px;
+        }
+    }
+    &.mini {
+        .ivu-menu-item,.ivu-menu-submenu-title {
+            padding: 4px 24px;
+        }
+        .ivu-menu-item-group-title {
+            height: 28px;
+            line-height: 28px;
+        }
+    }
 }

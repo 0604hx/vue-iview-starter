@@ -22,7 +22,7 @@
 
 <style>
     .main-footer {
-        padding: 6px 12px 6px 12px;
+        padding: 6px 8px 6px 8px;
         color: #555;
         border-top: 1px solid #dee2e6;
         background: #fff;

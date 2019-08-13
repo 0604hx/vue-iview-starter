@@ -35,6 +35,24 @@ Vue.prototype.date = (d) => { return window.D.date(d) }
 Vue.prototype.datetime = (d) => { return window.D.datetime(d) }
 Vue.prototype.filesize = (mem) => { return window.H.filesize(mem) }
 Vue.prototype.thousand = t=> window.H.toThousands(t)
+Vue.prototype.thousand2 = (t, len=2)=> t?window.H.toThousands(t.toFixed(len)):""
+Vue.prototype.starHide = (v, from, len=4)=>{
+  return v.substr(0, from)+(len==4?"****":"******")+v.substr(from+len)
+}
+Vue.prototype.wrapperHeight = ()=> {
+  let element = document.querySelector(".single-page-con")
+  return element?element.offsetHeight : 0
+}
+/**
+* 根据 to 获取 Menu 的名称（用于 iview）
+* 规则： 去掉开头的 / ，并将剩余的 / 全部替换成 -
+*/  
+Vue.prototype.menuName = (to)=>{
+   return !!to?to.substring(1).replace(/\//g,"-"):""
+}
+Vue.prototype.simpleMenuName = function(){
+  return this.$route.path.split("/").pop()
+}
 
 Vue.config.productionTip = false
 // Vue.config.silent = true

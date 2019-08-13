@@ -100,6 +100,14 @@ let H={
             "_blank", 
             `top=${iTop},left=${iLeft},height=${h},innerHeight=${h},width=${w},innerWidth=${w},toolbar=no,menubar=no,scrollbars=auto,resizeable=no,location=no,status=no`
         )
+    },
+    checkPwd (pwd){
+        return !!pwd && pwd.length >= 8 
+                    && /\d+/.test(pwd)                          //必须包含数字
+                    && /[a-z]+/.test(pwd)                       //必须包含小写字母
+                    && /[A-Z]+/.test(pwd)                       //必须包含大写字母
+                    && /[\.~!@#$%^&*()_+;,/]+/.test(pwd)        //必须包含特殊字符（不支持中文字符）
+        ;
     }
 }
 

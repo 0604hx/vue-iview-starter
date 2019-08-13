@@ -5,13 +5,13 @@
 import iView from 'iview'
 
 let showMsg = (type, m,d)=>{
-    let ops = {duration: d||3}
+    let ops = {duration: d||5}
     ops[typeof(m)==='function'?"render":"content"] = m
     iView.Message[type](ops)
 }
 
 let showNotice = (type, m, t, d)=>{
-    let ops = {duration: d||5, title: t}
+    let ops = {duration: d||10, title: t}
     ops[typeof(m)==='function'?"render":"desc"] = m
     iView.Notice[type](ops)
 }

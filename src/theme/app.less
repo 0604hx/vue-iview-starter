@@ -16,6 +16,8 @@ a {cursor: pointer;}
 .cyan {color: cyan}
 .purple {color: #8c0776 !important}
 .bg-purple {background-color: #8c0776 !important; color: white !important}
+.success2 {color:#2ae0c8 !important}
+.bg-success2 {background-color: #2ae0c8 !important}
 
 .c {text-align: center !important;}
 .l {text-align: left !important;}
@@ -83,6 +85,14 @@ a {cursor: pointer;}
 .loading{
     animation: ani-demo-spin 1s linear infinite;
 }
-.ivu-icon.fa {
-    font-family:"FontAwesome" !important;
+.ivu-icon {
+    &.fa, &.ivu-icon-fa{
+        font-family:"FontAwesome" !important;
+    }
+}
+.clickable {
+    cursor: pointer;
+    .ivu-card {
+        cursor: pointer;
+    }
 }

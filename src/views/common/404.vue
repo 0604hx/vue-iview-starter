@@ -1,79 +1,55 @@
-<!---->
 <template>
-    <div class="div404">
-        <div class="container">
-            <div class="error404">
-                <div class="error__face">{{face}}</div>
-                <div class="error__message">I'm so sorry,
-                    <br> but this page doesn't exist.</div>
-                <div class="error__code">Error code: 404</div>
+    <div>
+        <div class="p404 c">
+            <div style="border:2px dashed #404040; font-size:2rem" class="p20">
+                <div style="font-size: 4.5rem;">404</div>
+                <i :class="icon"></i>
+                {{text}}
             </div>
         </div>
     </div>
-
 </template>
+
 <style scoped>
-    .div404 {
-        /* background-color: #1E6CCE; */
-        /* color: #FFFFFF; */
-        font-family: 'Arvo', serif;
+    .p404 {
+        margin: 0px auto 0;
+        max-width: 650px;
+        min-height: 200px;
+        padding-top: 100px;
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 14px;
     }
 
-    .container {
-        /*max-width: 960px;*/
-        height: auto;
-        margin: 0 10px;
-        display: table;
+    p {
+        color: #555;
+        margin: 10px 10px;
     }
 
-    .error404 {
-        display: table-cell;
-        vertical-align: middle;
+    img {
+        border: 0px;
     }
 
-    .error__face {
-        font-size: 96px;
-    }
-
-    .error__message {
-        font-size: 48px;
-        margin-top: 52px;
-    }
-
-    .error__code {
-        font-size: 18px;
-        margin-top: 52px;
-        color: #999999;
-    }
-
-    @media screen and (min-width: 980px) {
-        .container {
-            width: auto;
-            margin: 0 auto !important;
-        }
+    .d {
+        color: #404040;
     }
 </style>
-<script>
-    var faces = [
-        'ಥ_ಥ',
-        '(≥o≤)',
-        '(^-^*)',
-        '(>_<)',
-        'ಠ_ಠ',
-        'ಠ╭╮ಠ',
-        '( ͠° ͟ʖ ͠°)'
-    ]
 
+<script>
     export default {
         data() {
             return {
-                face: ""
+                /**
+                 * 默认文本：此功能正在开发中，敬请期待...
+                 * 默认图标：fa fa-gear fa-spin
+                 */
+                text: "此功能不存在或暂未开放...",
+                icon: "fa fa-meh-o"
             }
         },
         methods: {
-        },
-        activated () {
-            this.face = faces[Math.floor(Math.random() * faces.length)]
+            toIndex() {
+                this.$router.replace("/")
+            }
         }
     }
 </script>

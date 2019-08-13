@@ -113,10 +113,105 @@ window.RESULT=(url,data,onOk,onFail,json=false)=>{
         else{
             //打印错误信息
             console.log('RESULT 请求<b class="error">'+url+"</b>时失败:"+res.message)
-            M.notice.error(res.message,"操作失败",10)
-            if(onFail) onFail(res)
+            // M.notice.error(res.message,"操作失败",10)
+            // if(onFail) onFail(res)
+
+            //当自定义了异常处理函数，就优先调用，当 onFail 返回 true 时不显示系统级别的错误提示
+            let notShowError = onFail && onFail(res)===true
+            if(!notShowError)
+                M.notice.error(res.message,"操作失败",10)
         }
     },onFail, json)
+}
+
+/**
+ * 直接用 json 提交数据
+ */
+window.RESULT2=(url,data,onOk,onFail)=>{
+    RESULT(url,data,onOk,onFail,true)
+}
+
+/**
+ * 下载文件到本地（使用 axios）
+ * 程序如何判断是否为异常（后端异常返回的是 JSON 格式的异常信息）
+ * 1. 后端没有返回文件名
+ * 2. 返回的格式为 application/json
+ * 
+ * ----------------------------------------------------------------------------
+ * 另外一种下载方式：
+ * window.open("/attach/zipDownload")
+ * 
+ * @param url       
+ * @param data      表单参数
+ * @param onOk      默认成功后：M.notice({文件名}, "文件下载成功")
+ * @param onFail    默认失败后通过 alert 打印错误信息
+ * @param json
+ * @constructor
+ */
+window.DOWNLOAD=(url, data, onOk, onFail,json=false)=>{
+    //提交数据到服务器
+    axios.post(window.SERVER + url, json?data:querystring.stringify(data||{}), {responseType: 'blob'}).then(function (response) {
+        let headers = response.headers
+        let contentType = headers['content-type']
+
+        console.debug("下载响应头部：", headers)
+        console.debug("下载响应内容：", response)
+        if(!response.data){
+            console.error("服务器响应异常", response)
+            return onFail && onFail(response)
+        }
+
+        const blob = new Blob([response.data], {type: contentType})
+        const contentDisposition = headers['content-disposition']
+        const length = headers['content-length']
+        let fileName = undefined
+        if (contentDisposition) {
+            fileName = window.decodeURI(contentDisposition.split('=')[1])
+        }
+
+        //判断是否为后端出错
+        if(!fileName && response.data.type=="application/json"){
+            let fileReader = new FileReader()
+            fileReader.onload = e=>{
+                let jsonText = fileReader.result
+                let result = JSON.parse(jsonText)
+
+                console.debug("来自后端的下载响应：", result)
+                if(onFail) onFail(result)
+                else {
+                    let msg = `服务器响应内容：<br><br><div class="error">${result.message}</div><br>
+                    <span class="h">1. 请确认您提交的参数是否正确后再重试<br>2. 若错误依旧请联系<b class="info">信息科技部</b>。</span>`
+                    M.alert(msg, "文件下载失败", "error")
+                }
+            }
+            fileReader.readAsText(response.data)
+        }
+        else {
+            fileName = fileName || ("文件下载-"+D.datetime(D.now(), "YYYYMMDDHHmmss"))
+
+            let link = document.createElement('a')
+            // 非IE下载
+            if ('download' in document.createElement('a')) {
+                link.href = window.URL.createObjectURL(blob)    // 创建下载的链接
+                link.download = fileName                        // 下载后文件名
+                link.style.display = 'none'
+                document.body.appendChild(link)
+                link.click()                                    // 点击下载
+                window.URL.revokeObjectURL(link.href)           // 释放掉blob对象
+                document.body.removeChild(link)                 // 下载完成移除元素
+            } else {
+                // IE10+下载
+                window.navigator.msSaveBlob(blob, fileName)
+            }
+            
+            if(onOk)
+                onOk({fileName, contentType, headers, length})
+            else
+                M.notice(fileName, "文件下载成功")
+        }
+    }).catch(function (error) {
+        _dealWithErrorRequest(url,error, onFail)
+    })
 }
 
 _initAxios(iView)
