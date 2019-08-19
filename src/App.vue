@@ -18,15 +18,15 @@ export default {
   /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/ 
   ::-webkit-scrollbar 
   { 
-      width: 3px; 
-      height: 3px; 
+      width: 5px; 
+      height: 5px; 
       background-color: #F5F5F5; 
   } 
     
   /*定义滚动条轨道 内阴影+圆角*/ 
   ::-webkit-scrollbar-track 
   { 
-      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.6); 
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2); 
       border-radius: 2px; 
       background-color: #F5F5F5; 
   } 
@@ -35,7 +35,7 @@ export default {
   ::-webkit-scrollbar-thumb 
   { 
       border-radius: 2px; 
-      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.6); 
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,1.6); 
       background-color: #555; 
   } 
   body {

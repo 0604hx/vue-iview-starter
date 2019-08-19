@@ -159,6 +159,7 @@
             child:[
                 {url:"/demo/index", icon:"ios-home",text:"演示主页"},
                 {url:"/demo/list", icon:"ios-list-box-outline",text:"列表演示"},
+                {url:"/demo/data-table", icon:"ios-list-box-outline",text:"二维数组显示"},
                 {url:"/demo/chart", icon:"ios-pie-outline",text:"图表、地图"},
                 {url:"/demo/code-editor", icon:"ios-code-working",text:"代码编辑器"},
                 {url:"/demo/upload", icon:"md-cloud-upload",text:"文件上传"},

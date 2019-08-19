@@ -2,7 +2,7 @@
  * @Author: 集成显卡(https://github.com/0604hx) 
  * @Date: 2019-02-27 10:36:52 
  * @Last Modified by: 集成显卡
- * @Last Modified time: 2019-05-30 15:50:15
+ * @Last Modified time: 2019-08-19 13:06:43
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -33,6 +33,7 @@ let appRouter = {
     { path: '/demo/chart', meta:{title:"图表、地图演示"}, name: 'demo-chart', component: resolve => require(['@V/demo/Chart'], resolve) },
     { path: '/demo/code-editor', meta:{title:"代码编辑器"}, name: 'demo-code-editor', component: resolve => require(['@V/demo/CodeEditor'], resolve) },
     { path: '/demo/upload', meta:{title:"文件上传"}, name: 'demo-upload', component: resolve => require(['@V/demo/Upload'], resolve) },
+    { path: '/demo/data-table', meta:{title:"表格展示二维数组"}, name: 'demo-upload', component: resolve => require(['@V/demo/DataTable'], resolve) },
 
     // 系统相关
     { path: '/sys/log', meta:{title:"日志-系统管理"}, name: 'sys-log', component: resolve => require(['@V/system/Log'], resolve) },
@@ -63,8 +64,15 @@ let routes = [
 
 let router = new Router({
     routes
-  })
+})
 
-// initCheck(router)
+let inited = false
+//inited = initCheck(router)
+if (!inited) {
+  router.afterEach(route => {
+    window.scrollTo(0, 0)
+    E.$emit("breadcrumb", route.path)
+  })
+}
 
 export default router

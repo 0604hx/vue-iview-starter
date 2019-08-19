@@ -1,8 +1,8 @@
 /*
  * @Author: 集成显卡(https://github.com/0604hx) 
  * @Date: 2019-02-27 11:02:37 
- * @Last Modified by:   集成显卡 
- * @Last Modified time: 2019-02-27 11:02:37 
+ * @Last Modified by: 集成显卡
+ * @Last Modified time: 2019-08-15 08:29:59
  */
 
 /**
@@ -33,7 +33,7 @@ const _onLoginDone = (account) => {
 
 export default router => {
     router.beforeEach((to, from, next) => {
-        // iview.LoadingBar.start();
+        iview.LoadingBar.start()
 
         //如果是跳转到登录，则马上前往
         if (to.name === 'login') return next()
@@ -63,13 +63,15 @@ export default router => {
             else
                 next({ name: 'login', query: { redirect } })
         }
-        // iview.LoadingBar.finish()
+        iview.LoadingBar.finish()
     })
 
     router.afterEach(route => {
-        // iview.LoadingBar.finish()
+        iview.LoadingBar.finish()
 
         window.scrollTo(0, 0)
         E.$emit("breadcrumb", route.path)
     })
+
+    return true
 }
