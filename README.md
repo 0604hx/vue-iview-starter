@@ -1,6 +1,6 @@
 # vue-iview-starter
 
-> vue-cli3 + iview3 starter 💛
+> vue-cli3 + iview4 starter 💛
 
 ![登录页面（模仿inspinia）](docs/screenshots/login-v3.png)
 ![演示页面-首页](docs/screenshots/demo-index.png)
@@ -41,6 +41,9 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ## 更新日志
 > `2019年2月27日` 升级到`2.x`
+
+### v2.2.0
+- [x] 升级`iview`到`view-design`
 
 ### v.2.1.0
 - [x] 升级`vue`、`vue-router`、`vue-cli`等控件的版本

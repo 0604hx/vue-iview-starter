@@ -57,13 +57,13 @@
         data () {
             return {
                 columns: [
-                    { title: "", type: "index", width: 40 },
-                    { title: "名称应用名", key: "name", width: 120, sortable: true },
+                    { title: "", type: "index", width: 50 },
+                    { title: "名称", key: "name", width: 120, sortable: true },
                     { title: "地址", key: "address", width: 280 },
                     { title: "备注信息", key: "remark" },
-                    { title: "录入日期", key: "addDate", width: 155, sortable: true, render: (h, p) => { return h('p', D.datetime(p.row.addDate)) } },
+                    { title: "录入日期", key: "addDate", width: 170, sortable: true, render: (h, p) => { return h('p', D.datetime(p.row.addDate)) } },
                     {
-                        title: "操作", width: 160,
+                        title: "操作", width: 140,
                         renderHeader: (h, p) => {
                             return h('div', [
                                 h('span', "操作"),
@@ -113,12 +113,11 @@
                                             {slot:"list"},
                                             [
                                                 h('Dropdown-item',{
-                                                    class:'error',
-                                                    props:{divided:true},
+                                                    props:{divided:false},
                                                     nativeOn: {
                                                         click: ()=>this._del(p.index)
                                                     }
-                                                },[h('Icon', {props:{type:"ios-trash-outline", size:14}})," 删除此数据"]),
+                                                },[h('Icon', {props:{type:"ios-trash-outline error", size:14}})," 删除此数据"]),
                                             ]
                                         )
                                     ]

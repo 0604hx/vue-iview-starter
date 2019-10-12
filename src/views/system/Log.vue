@@ -44,7 +44,7 @@
                 error:"",
                 types:['默认','新增','更新','删除','系统','错误','数据','清洗','登出','登录','上传','下载','后退'],
                 columns: [
-                    { title: "", type: "index", width: 40 },
+                    { title: "", type: "index", width: 50 },
                     { 
                         title: "用户名", key: "un", width: 120, sortable: true,
                         render:(h,p)=>{
@@ -75,7 +75,7 @@
                             return h('p',cs)
                         }
                     },
-                    { title: "记录日期", key: "d", width: 155, sortable: true, render: (h, p) => { return h('p', D.datetime(p.row.d)) } },
+                    { title: "记录日期", key: "d", width: 170, sortable: true, render: (h, p) => { return h('p', D.datetime(p.row.d)) } },
 
                 ]
             }

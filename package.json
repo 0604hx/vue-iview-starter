@@ -1,6 +1,6 @@
 {
   "name": "vue-iview-starter",
-  "version": "2.0.0",
+  "version": "2.2.0",
   "description": "vue-cli3 + iview3 starter",
   "author": "zxingming@foxmail.com",
   "license": "MIT",
@@ -14,11 +14,11 @@
   "dependencies": {
     "axios": "^0.19.0",
     "countup": "^1.8.2",
-    "iview": "^3.4.2",
+    "highcharts": "^7.0.3",
     "moment": "^2.24.0",
     "store": "^2.0.12",
+    "view-design": "^4.0.0",
     "vue": "^2.6.10",
-    "highcharts": "^7.0.3",
     "vue-codemirror-lite": "^1.0.3",
     "vue-router": "^3.1.2"
   },

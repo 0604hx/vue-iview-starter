@@ -2,10 +2,10 @@
  * 基于 iviewui 实现的对话框、确认框等组件
  * Created by zengxm on 4/28/2017.
  */
-import iView from 'iview'
+import iView from 'view-design'
 
 let showMsg = (type, m,d)=>{
-    let ops = {duration: d||5}
+    let ops = {duration: d||5,background: true}     //默认显示背景色
     ops[typeof(m)==='function'?"render":"content"] = m
     iView.Message[type](ops)
 }

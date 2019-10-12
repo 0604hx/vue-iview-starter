@@ -16,14 +16,18 @@ import commonViews from '@C/common'
 
 
 // 引入 iview
-import iview from 'iview'
+import iview from 'view-design'
 import '@T/theme.less'
 import "@T/app.less"
 
 // 实际打包时应该不引入mock
 // if (process.env.NODE_ENV !== 'production') require('@/mock')
 
-Vue.use(iview)
+//设置 view-design 的全局配置
+Vue.use(iview, {
+  transfer: true,
+  size: 'default',
+})
 Vue.use(commonViews)
 
 import moment from 'moment'

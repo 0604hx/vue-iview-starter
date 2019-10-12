@@ -12,6 +12,8 @@
 
 <template>
     <div class="demoDiv content">
+        <Alert banner closable type="warning">提醒：现已升级到最新的 <b class="info">view-design </b>（iview4） </Alert>
+
         <h2>欢迎来到 {{name}} <small>version={{version}}</small></h2>
         <div class="section">
             <h3>日期工具</h3>
@@ -87,6 +89,7 @@
             <h3>列表及分页</h3>
             <small>请点击菜单中的”列表演示“</small>
         </div>
+
     </div>
 </template>
 
@@ -106,7 +109,7 @@
         },
         data () {
             return {
-                name:"vue + iview2 starter",
+                name:"vue + iview4 starter",
                 version: C.version,
                 page:{
                     total:10,
@@ -119,8 +122,12 @@
             tip(notice=false){
                 if(notice)
                     M.notice.ok(`hello ${this.name}`,'Notice 类型提示')
-                else
-                    M.info(`hello ${this.name}`)
+                else{
+                    let ts = ["info:普通消息","ok:成功消息","warn:警告消息","error:错误消息"]
+                    let t = ts[Math.floor(Math.random()*4)].split(":")
+                    M[t[0]](`[${t[1]}] hello ${this.name}`)
+                }
+                    
             },
             newWindow (){
                 window.H.open('/#/demo/window', 1250)

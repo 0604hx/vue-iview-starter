@@ -2,7 +2,7 @@
  * 每次发送请求都附带 TOKEN
  */
 
-import iView from 'iview'
+import iView from 'view-design'
 import axios from 'axios'
 import querystring  from 'querystring'
 
