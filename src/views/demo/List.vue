@@ -1,7 +1,7 @@
 <!--list 演示程序，继承于 macro/page.tpl.vue-->
 <template>
     <div>
-        <Alert type="warning" show-icon>
+        <Alert type="info" show-icon>
             列表演示页面
             <template slot="desc">
                 <ol style="list-style-type:decimal;counter-reset:sectioncounter; padding-left:12px">

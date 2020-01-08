@@ -31,15 +31,21 @@
             </div>
 
         <div class="main-header-con" :style="{paddingLeft: shrink?'60px':'240px'}" style="height:50px">
-            <div class="main-header bg-primary" style="height:50px;">
+            <div class="main-header" :class="theme" style="height:50px;">
                 <div class="navicon-con">
                     <Icon type="md-menu" size="24" :style="{transform: 'rotateZ(' + (this.shrink ? '-90' : '0') + 'deg)'}" 
                         style="cursor:pointer; line-height:38px;color:white;"
                         @click="toggleClick" />
                 </div>
                 <div class="header-middle-con">
-                    <div class="main-breadcrumb">
-                        {{pageTitle}}
+                    <Menu v-if="topMenu"  ref="topMenu" :active-name="topMenuName" mode="horizontal" theme="primary" class="topMenu" :class="theme">
+                        <li class="topMenuTitle ivu-menu-item"><Icon :type="topMenuIcon"></Icon> {{menuName}} </li>
+                        <MenuItem v-for="(item,index) in topMenus" :key="index" :name="item.name" :to="item.to" :title="item.tip||item.text">
+                            <i :class="item.icon"></i> {{item.text}}
+                        </MenuItem>
+                    </Menu>
+                    <div v-else class="main-breadcrumb">
+                        {{menuName}}
                     </div>
                 </div>
                 <div class="header-avator-con">
@@ -71,27 +77,66 @@
     import Global from '@V/Global.vue'
     import Footer from "@C/footer/footer"
 
+    let TOP_HIDE = 100
+    let TOP_CHANGE = 101
+    
     export default {
         components: {
             Menubar, Global, Footer
         },
         data() {
             return {
+                theme:"bg-primary",
                 shrink: false,
                 userName: '未授权',
                 menuList: [],
-                pageTitle:""
+                pageTitle:"",
+                menuName: "",
+                topMenu: false,
+                topMenus: [],
+                topMenuIcon: "",
+                topMenuName: ""
             };
         },
         computed: {
         },
         methods: {
-            toggleClick() {
-                this.shrink = !this.shrink;
+            toggleClick(value) {
+                if(value != undefined && typeof(value) === 'boolean'){
+                    if(this.shrink != value)
+                        this.shrink = value
+                }else
+                    this.shrink = !this.shrink
             },
             breadcrumb (r){
-                console.log("切换网页标题：", r)
-                this.pageTitle = typeof(r)=='string'?r:r.meta?r.meta.title:""
+                if(r===TOP_HIDE){
+                    this.topMenu = false
+                    this.topMenus = []
+                    this.menuName = ""
+                    return
+                }else if(this.topMenu && r==TOP_CHANGE){
+                    this.topMenuName = n
+                }else if(this.topMenu==true){
+                    console.debug(`顶部菜单正在显示中，忽略此操作...`)
+                    return
+                }
+                
+                if(typeof(r)=='string'){
+                    this.menuName = r
+                    this.topMenu = false
+                }
+                else if(r.meta){
+                    this.menuName = r.meta.title
+                    this.topMenu = false
+                }
+                else if(r.title && r.menus){
+                    this.menuName = r.title
+                    this.topMenu = r.menus.length>0
+                    this.topMenus = r.menus
+                    this.topMenuName = r.name
+                    this.topMenuIcon = r.icon || "fa fa-circle success2"
+                }else
+                    this.menuName = ""
             },
             navigateTo (path, replace=false, ps={}){
                 let p = {params:ps}
@@ -108,6 +153,7 @@
         mounted() {
             E.$on("breadcrumb", this.breadcrumb)
             E.$on("navigateTo", this.navigateTo)
+            E.$on("menu-toggle", this.toggleClick)
 
             setTimeout(()=>this.breadcrumb(this.$route), 500)
             
@@ -115,10 +161,15 @@
             if(this.$route.query.menu==='false'){
                 this.shrink = true
             }
+
+            let localTheme = S.get("THEME")||"primary"
+            this.theme = `bg-${localTheme}`
+            document.body.classList.add("theme-"+localTheme)
         },
         destroyed () {
             E.$off("breadcrumb", this.breadcrumb)
             E.$off("navigateTo", this.navigateTo)
+            E.$off("menu-toggle", this.toggleClick)
         }
     }
 </script>

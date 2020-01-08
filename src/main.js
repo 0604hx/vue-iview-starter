@@ -1,9 +1,3 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from 'vue'
-import router from './router'
-
-
 //引入常量
 import Consts from '@/Const'
 global.C = window.C = Consts
@@ -14,6 +8,10 @@ Vue.prototype.C = Consts
 import '@U'
 import commonViews from '@C/common'
 
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import Vue from 'vue'
+import router from './router'
 
 // 引入 iview
 import iview from 'view-design'
@@ -56,6 +54,14 @@ Vue.prototype.menuName = (to)=>{
 }
 Vue.prototype.simpleMenuName = function(){
   return this.$route.path.split("/").pop()
+}
+Vue.prototype.winWidth = window.innerWidth
+//获取可用的内容高度
+Vue.prototype.contentHeight = function(id){
+  let top = $("#"+id).offset().top
+  let height = (this.wrapperHeight() || window.innerHeight) - top - ($(".main-header-con").length>0?(top>60?-5:-16):34)
+  console.debug(`计算高度为 `, height, top, this.wrapperHeight())
+  return height
 }
 
 Vue.config.productionTip = false

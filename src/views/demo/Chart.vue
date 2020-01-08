@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Card :padding="0">
+        <!-- <Card :padding="0">
             <p slot="title" class="card-title">
                 <Icon type="map"></Icon>
                 全球人口密度统计
@@ -13,14 +13,14 @@
                     <MapCountry :data="countryData" serieName="全球人口密度统计" subtitle="鼠标移动以获取详细信息" legendTitle="单位：人/平方公里"></MapCountry>
                 </Col>
             </Row>
-        </Card>
+        </Card> -->
 
         <Card class="mt10" :padding="0">
             <p slot="title" class="card-title">
                 <Icon type="map"></Icon>
                 柱状图（通过 <em>options</em> 定义）
             </p>
-            <Chart :options="columnOptions"></Chart>
+            <Chart ref="barChart" style="height: 400px;"></Chart>
         </Card>
 
         <Card class="mt10" :padding="0">
@@ -28,18 +28,21 @@
                 <Icon type="map"></Icon>
                 柱状图（通过 <em>data</em> 快速定义，只处理单个 series）
             </p>
-            <Chart title="全球人口密度" :data="columnData" type="area" ytitle="人口" :height="400"></Chart>
+            <!-- <Chart title="全球人口密度" :data="columnData" type="area" ytitle="人口" :height="400"></Chart> -->
+            <Chart ref="renKouChart" style="height:400px"></Chart>
         </Card>
     </div>
 </template>
 
 <script>
-    import MapCountry from '@C/chart/map.world.vue'
-    import Chart from '@C/chart/basic.vue'
+    // import MapCountry from '@C/chart/map.world.vue'
+    // import Chart from '@C/chart/basic.vue'
+    import Chart from "@C/common/chart.vue"
 
     export default {
         components: {
-            MapCountry,Chart
+            // MapCountry,Chart，
+            Chart
         },
         data () {
             return {
@@ -103,6 +106,45 @@
         mounted () {
             this.columnData = this.countryData.map(v=>{
                 return {name:v.code, value:v.value}
+            })
+
+            this.$refs['renKouChart'].update("全球人口密度",[], this.countryData.map(v=>v.code), [this.countryData.map(v=>v.value)])
+
+            this.$refs['barChart'].setOption({
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                        type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                    }
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                        axisTick: {
+                            alignWithLabel: true
+                        }
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        name: '直接访问',
+                        type: 'bar',
+                        barWidth: '60%',
+                        data: [10, 52, 200, 334, 390, 330, 220]
+                    }
+                ]
             })
         }
     }

@@ -10,7 +10,7 @@
         
         <template v-for="(menu, $i) in menus">
             <MenuGroup v-if="menu.type=='Group'" :title="menu.text">
-                <router-link v-for="(m, $mi) in menu.child" :key="$mi" v-if="!!m.url" :to="m.url" :title="m.text">
+                <router-link v-for="(m, $mi) in menu.child" :key="$mi" v-if="!!m.url" :to="m.url" :title="m.text" :target="m.blank?'_blank':''">
                     <MenuItem :name="menuName(m.url)">
                     <Icon :type="m.icon" :color="m.color" :size="iconSize"></Icon>
                     <span class="layout-text" v-text="m.text"></span>
@@ -23,7 +23,7 @@
                     <Icon :type="menu.icon" :color="menu.color" :size="iconSize" :title="menu.text"></Icon>
                     <span class="layout-text" v-text="menu.text"></span>
                 </template>
-                <router-link v-for="(m, $mi) in menu.child" :key="$mi" v-if="!!m.url" :to="m.url" :title="m.text">
+                <router-link v-for="(m, $mi) in menu.child" :key="$mi" v-if="!!m.url" :to="m.url" :title="m.text" :target="m.blank?'_blank':''">
                     <MenuItem :name="menuName(m.url)">
                     <Icon :type="m.icon" :color="m.color" :size="iconSize"></Icon>
                     <span class="layout-text" v-text="m.text"></span>
@@ -31,7 +31,7 @@
                 </router-link>
             </Submenu>
 
-            <router-link  v-if="!!menu.url" :to="menu.url" :title="menu.text">
+            <router-link  v-if="!!menu.url" :to="menu.url" :title="menu.text" :target="menu.blank?'_blank':''">
                 <MenuItem :name="menuName(menu.url)">
                 <Icon :type="menu.icon" :color="menu.color" :size="iconSize"></Icon>
                 <span class="layout-text" v-text="menu.text"></span>

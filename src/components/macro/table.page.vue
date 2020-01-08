@@ -5,7 +5,7 @@
             <slot name="left"></slot>
         </div>
         <div style="float: right;">
-            <Page placement="top" :total="value.total" :current="value.current" @on-change="_selectPage"
+            <Page placement="top" size="small" :total="value.total" :current="value.current" @on-change="_selectPage"
                     show-sizer show-total show-elevator
                     :page-size="value.pageSize" :page-size-opts="value.pageSizes" @on-page-size-change="_selectPageSize">
                 <slot><span class="info">{{value.info}}</span></slot>

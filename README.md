@@ -42,6 +42,11 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 ## 更新日志
 > `2019年2月27日` 升级到`2.x`
 
+### v2.3.0
+- [x] 图表库更换成`echarts`
+- [x] 增加主题色切换功能
+- [x] 完善列表页模板：src\components\macro\page.tpl.vue
+
 ### v2.2.0
 - [x] 升级`iview`到`view-design`
 

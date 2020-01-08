@@ -12,7 +12,7 @@
                 datas: [],
                 form: {},
                 entity: {},            //录入的实体
-                addModal: { show: false, work: true },  //编辑对象的对话框
+                addModal: { show: false, work: true, edit: false },  //编辑对象的对话框
                 page: {
                     current: 1,
                     pageSize: 20,
@@ -22,7 +22,11 @@
                     params: {},
                     info: ""
                 },
+                tableHeight: 0,         //表格高度，设置大于0后可以限定表格高度
+                tableId: undefined,     //表格ID，不为空时自动计算表格高度
                 selectIds: [],
+                selectKey: "uuid",      //复制到 selectUuids 时读取的字段名
+                postJSON: false,        //是否以 JSON 格式提交数据，主要是执行添加操作时
                 columns: [{ title: "请自定义columns！" }],
                 autoFocus: null  //当打开编辑对话框时，默认获取到焦点的 input 控件
             }
@@ -57,6 +61,15 @@
                     this.api = a
                 } else
                     this.api = path
+
+                this._computeHeight()
+            },
+            _computeHeight (){
+                if(!!this.tableId){
+                    let top = $("#"+this.tableId).offset().top
+                    this.tableHeight = (this.wrapperHeight() || window.innerHeight) - top - ($(".main-header-con").length>0?28:80)
+                    console.debug(`计算表格高度为 `, this.tableHeight, top)
+                }
             },
             _pageSize(ps) {
                 this.page.pageSize = ps;
@@ -177,14 +190,22 @@
                     return this.addModal.work = false
                 }
 
-                RESULT(this.api.add, H.fixBean(this.entity), (d) => {
-                    this.addModal.show = false
-                    if (this.onAddDone) this.onAddDone()
-                    else this._load()
-                }, (e) => {
-                    setTimeout(() => { this.addModal.work = true }, 500)
-                    return this.addModal.work = false
-                })
+                let data = this.prepareEntityForPost ? this.prepareEntityForPost() : this.postJSON?this.entity:H.fixBean(this.entity)
+
+                RESULT(
+                    this.addModal.edit?this.api.edit : this.api.add, 
+                    data, 
+                    (d) => {
+                        this.addModal.show = false
+                        if (this.onAddDone) this.onAddDone()
+                        else this._load()
+                    }, 
+                    (e) => {
+                        setTimeout(() => { this.addModal.work = true }, 500)
+                        return this.addModal.work = false
+                    }, 
+                    this.postJSON
+                )
             },
             /**
              * 根据序号来删除

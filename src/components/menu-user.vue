@@ -3,11 +3,12 @@
     <div>
         <Dropdown transfer trigger="click" @on-click="handleClickUserDropdown" placement="bottom-end">
             <a href="javascript:void(0)" title="点击以查看我的个人菜单">
-                <i class="fa fa-user-circle-o faa-spin animated-hover" style="font-size:2rem; color:#c2c7d0"></i>
+                <i class="fa fa-user-circle-o faa-spin animated-hover" :class="theme" style="font-size:2rem; color:#c2c7d0"></i>
             </a>
             <DropdownMenu slot="list">
                 <DropdownItem name="detail" divided disabled> <i class="fa fa-question-circle"></i> 个人基本信息</DropdownItem>
                 <DropdownItem name="pwd"> <i class="fa fa-unlock-alt"></i> 修改登录密码</DropdownItem>
+                <DropdownItem name="topTheme"> <i class="fa fa-pie-chart"></i> 配色设置</DropdownItem>
                 <DropdownItem name="logout" divided><i class="fa fa-sign-out"></i>退出登录</DropdownItem>
             </DropdownMenu>
         </Dropdown>
@@ -37,6 +38,22 @@
             </div>
         </Modal>
 
+        <Modal v-model="themeShow" title="选择主题色">
+            <div>
+                <Alert show-icon colseable>
+                    <div>
+                        修改主题色后，仅在本机有效，清空本地数据缓存或更换电脑后将恢复默认值。
+                    </div>
+                    <p class="mt10 b warning">此为实验室功能，可能会出现不影响系统功能的界面层面BUG</p>
+                </Alert>
+                <RadioGroup v-model="theme">
+                    <Radio v-for="(item,index) in themes" :key="index" :label="item"> <Tag :class="'bg-'+item" style="width:56px;height:32px"></Tag> </Radio>
+                </RadioGroup>
+            </div>
+            <div slot="footer">
+                <Button type="primary" @click="themeDo"><i class="fa fa-check"></i> 确定修改</Button>
+            </div>
+        </Modal>
     </div>
 </template>
 
@@ -51,6 +68,8 @@
         }
     }
 
+    let DEFAULT_THEME = "primary"
+
     export default {
         components: {
             PasswordTip
@@ -58,7 +77,10 @@
         data () {
             return {
                 pwdShow: false,
-                pwd: resetPwd()
+                pwd: resetPwd(),
+                themeShow: false,
+                themes: ["primary", "purple", "success", "warning","black"],
+                theme: S.get("THEME")
             }
         },
         methods: {
@@ -83,7 +105,16 @@
                     this.pwdShow = true
                 } else if(name==='detail'){
                     this.$refs["detailModal"].open()
+                }else if(name==="topTheme"){
+                    this.theme = S.get("THEME", DEFAULT_THEME)
+                    this.themeShow = true
                 }
+            },
+            themeDo (){
+                S.set("THEME", this.theme)
+
+                M.notice.ok("主题色修改成功，刷新后效果可见")
+                this.themeShow = false
             },
             pwdDo (){
                 if(!this.pwd.old){

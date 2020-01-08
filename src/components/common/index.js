@@ -3,7 +3,7 @@
  * Created by zengxm on 3/21/2017.
  */
 import ExportButton from './export.vue'
-import Chart from '@C/chart/basic.vue'
+import Chart from './chart.vue'
 import CodeMirror from "./codemirror.vue"
 import Loading from "./loading.vue"
 

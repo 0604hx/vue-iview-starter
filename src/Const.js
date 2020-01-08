@@ -6,7 +6,8 @@ export default {
     company:"",
     developer:"集成显卡",
     email:"zxingming@foxmail.com",
-    version: "2.2.0",
+    footerTip:"点此查看0604hx的主页",
+    version: "2.3.0",
 
     /**
      * 定制 codemirror 选项
