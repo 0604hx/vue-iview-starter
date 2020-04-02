@@ -6,12 +6,14 @@ import ExportButton from './export.vue'
 import Chart from './chart.vue'
 import CodeMirror from "./codemirror.vue"
 import Loading from "./loading.vue"
+import Group from "./group/group.vue"
 
 const views = {
     ExportButton,
     Chart,
     CodeMirror,
-    Loading
+    Loading,
+    Group
 }
 
 const install = function (Vue, opts = {}) {

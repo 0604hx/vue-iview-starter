@@ -49,7 +49,7 @@
     ]
     let grid = {
         left: '1%',
-        bottom:'1%',
+        bottom:'2%',
         right:'1%',
         containLabel: true
     }
@@ -65,6 +65,12 @@
     }
 
     export default {
+        props: {
+            boundaryGap:{type:Boolean, default:false},
+            interval:{type:String, default:"auto"},             //设置为0即可强制显示 X 轴的全部标签
+            legendBottom:{type:Boolean, default:false},         //是否将 legend 在底部显示，默认在顶部
+            toolbox:{type:Boolean, default:true},               //是否显示工具栏
+        },
         data () {
             return {
                 data: {},
@@ -73,6 +79,11 @@
         },
         mounted () {
             this.chart = echarts.init(this.$refs['chart'])//macarons
+
+            if(this.legendBottom){
+                grid.bottom = "10%"
+            }
+            if(this.toolbox == false)   toolbox = {}
         },
         methods: {
             showLoading (text="数据正在努力加载..."){
@@ -82,14 +93,14 @@
                     effectOption: {backgroundColor:'rgba(0,0,0,0)'}
                 })
             },
-            update (title, legend=[], xItems=[],series=[], type="line", danwei=""){
+            update (title, legend=[], xItems=[],series=[], danwei=""){
                 let option = {
                     title:{ text: title},
-                    legend:{ data: legend },
+                    legend:{ data: legend,  bottom: this.legendBottom?0:"auto"},
                     tooltip,
                     grid,
                     toolbox,
-                    xAxis:{ data: xItems, boundaryGap: false },
+                    xAxis:{ data: xItems, boundaryGap: this.boundaryGap , axisLabel: {interval:this.interval}},
                     yAxis:{
                         type:"value",
                         splitLine:{show: true, lineStyle:{width:1}},
@@ -100,7 +111,7 @@
                     color,
                     series: series.map(s=>{
                         return Object.assign({
-                            type,
+                            type:"line",
                             smooth:true,
                             areaStyle:{},
                             markLine: {data:[{type:'average'}]},
@@ -113,13 +124,13 @@
             },
             //直接覆盖配置
             setOption (opts){
-                this.chart.setOption(Object.assign({color}, opts))
+                this.chart.setOption(opts)
                 this.chart.hideLoading()
             },
             redraw (title, legend=[], xs,ys, series){
                 this.chart.setOption({
                     title:{ text: title},
-                    legend:{ data: legend },
+                    legend:{ data: legend,  bottom: this.legendBottom?0:"auto" },
                     tooltip,
                     grid,
                     toolbox,

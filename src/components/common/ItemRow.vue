@@ -1,6 +1,7 @@
 <template>
     <FormItem>
         <div slot="label" :title="tip">
+            <b v-if="required" class="error">*</b>
             {{label}} <i v-if="!!tip" class="fa fa-question-circle primary"></i>
         </div>
         <slot>
@@ -14,11 +15,12 @@
 <script>
     export default {
         props: {
-            label:  {type:String},
-            value:  {default:""},
-            radio:  {type:Boolean, default:false},
-            tip:    {type:String, default:""},
-            rows:   {type:Number, default:1}
+            label:      {type:String},
+            value:      {default:""},
+            radio:      {type:Boolean, default:false},
+            tip:        {type:String, default:""},
+            rows:       {type:Number, default:1},
+            required:   {type:Boolean, default:false}
         },
         data () {
             return {

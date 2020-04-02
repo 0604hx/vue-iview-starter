@@ -139,7 +139,8 @@ a {cursor: pointer;}
         background-color: #d7d7d7;
     }
     .item {
-        background-color: #eaeaea;
+        background-color: #ebf7ff;      //浅蓝色
+        // background-color: #eaeaea;
         text-align: center;
     }
     td,th {
@@ -188,6 +189,14 @@ START 主题色
             color: white !important;
         }
     }
+    .ivu-checkbox-checked .ivu-checkbox-inner {
+        border-color: @black;
+        background-color: @black;
+    }
+    .ivu-switch-checked {
+        border-color: @black;
+        background-color: @black;
+    }
 }
 .theme-success {
     .ivu-btn-primary {
@@ -208,6 +217,14 @@ START 主题色
         background-color: @success;
         color: white;
     }
+    .ivu-checkbox-checked .ivu-checkbox-inner {
+        border-color: @success;
+        background-color: @success;
+    }
+    .ivu-switch-checked {
+        border-color: @success;
+        background-color: @success;
+    }
 }
 .theme-warning {
     .ivu-btn-primary {
@@ -225,6 +242,14 @@ START 主题色
         color: @warning;
     }
     .theme-bg {
+        background-color: @warning;
+    }
+    .ivu-checkbox-checked .ivu-checkbox-inner {
+        border-color: @warning;
+        background-color: @warning;
+    }
+    .ivu-switch-checked {
+        border-color: @warning;
         background-color: @warning;
     }
 }
@@ -247,6 +272,14 @@ START 主题色
     .theme-bg {
         background-color: @purple;
         color: white;
+    }
+    .ivu-checkbox-checked .ivu-checkbox-inner {
+        border-color: @purple;
+        background-color: @purple;
+    }
+    .ivu-switch-checked {
+        border-color: @purple;
+        background-color: @purple;
     }
 }
 .theme-primary {

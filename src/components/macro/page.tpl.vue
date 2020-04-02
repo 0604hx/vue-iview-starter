@@ -227,6 +227,20 @@
                     })
                 })
             },
+            _delSelected (onDel, msg){
+                if(this.selectIds.length==0)
+                    return M.warn("请先选择数据行")
+                
+                M.confirm("删除确认", msg || ("你确定要删除选中数据吗？"+(this.selectIds.length>1?" \n<div class='mt20 b error'>批量操作请慎重！</div>":"")), () => {
+                    RESULT(this.api.del, { ids: this.selectIds }, (d) => {
+                        if (onDel && typeof(onDel)=='function') onDel()
+                        else {
+                            M.notice.ok("数据删除成功")
+                            this._load(this.page.current)
+                        }
+                    })
+                })
+            },
             /**
              * 根据当前查询条件批量删除数据
              * 

@@ -33,10 +33,10 @@ const M = {
     alert (m,t, type="info"){
         iView.Modal[type]({title:t, content:m})
     },
-    confirm (t,m,onOk,onCancel){
-        iView.Modal.confirm({
+    confirm (t,m,onOk,onCancel, width=460){
+        let ops = {
             title: t,
-            content: m||'',
+            width,
             okText: '确定',
             cancelText: '我再想想',
             onOk: () => {
@@ -45,7 +45,9 @@ const M = {
             onCancel: () => {
                 if(onCancel) onCancel()
             }
-        });
+        }
+        ops[typeof(m)==='function'?"render":"content"] = m
+        iView.Modal.confirm(ops)
     },
     notice:{
         ok (m,t="操作成功",d){
