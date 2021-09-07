@@ -4,7 +4,7 @@
  * @Author: 集成显卡 
  * @Date: 2019-01-18 09:19:37 
  * @Last Modified by: 集成显卡
- * @Last Modified time: 2019-03-07 09:36:32
+ * @Last Modified time: 2021-09-06 08:48:26
  */
 
 const yargs = require('yargs')
@@ -47,7 +47,7 @@ const proxies = {}
 /**
  * 这里填写需要转发的 url 规则，如 /app
  */
-const prefixs = ['/dashboard', '/attach', '/sys', '/captcha-code','/login','/logout','/token','/menuController','/bankmgr']
+const prefixs = ['/dashboard', '/attach', '/sys', '/captcha-code','/login','/logout','/token','/menuController']
 //后端服务器地址
 
 const server = `http://${clusterHost}/`

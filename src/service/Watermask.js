@@ -2,7 +2,7 @@
  * @Author: 集成显卡
  * @Date: 2019-07-03 08:11:03 
  * @Last Modified by: 集成显卡
- * @Last Modified time: 2019-08-13 16:15:48
+ * @Last Modified time: 2021-09-07 16:30:20
  */
 let watermark = {}
 
@@ -24,7 +24,7 @@ let setWatermark = (str, ps) => {
         left: 0,                                     //左间距
         top: 50,
     }, ps)
-    let id = 'CIB-NN-WATERMASK'
+    let id = 'USER-WATERMASK'
     let rotates = [0, 20, 45, 90, -20, -45, -90]
     if(!rotates.includes(ps.rotate))
         ps.rotate = rotates[Math.floor(Math.random() * rotates.length)]
@@ -104,7 +104,7 @@ watermark.set = (str, ps) => {
 }
 
 watermark.clean = ()=>{
-    let mark = document.querySelector("#CIB-NN-WATERMASK")
+    let mark = document.querySelector("#USER-WATERMASK")
     if(!!mark)
         mark.remove()
 }

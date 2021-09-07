@@ -166,13 +166,20 @@ a {cursor: pointer;}
 START 主题色
 */
 .theme-black {
+    .ivu-tag-primary {
+        background-color: @black;
+    }
     .ivu-btn-primary {
         background-color: @black;
         border-color: @black;
     }
     .ivu-radio-group-button .ivu-radio-wrapper-checked {
         border-color: @black;
-        color: @black;
+        background: @black;
+        color: white;
+    }
+    .ivu-radio-group-button .ivu-radio-wrapper-checked:hover {
+        background: @black;
     }
     .ivu-select-item-selected, .ivu-select-item-selected:hover {
         color: @black;
@@ -197,15 +204,62 @@ START 主题色
         border-color: @black;
         background-color: @black;
     }
+    .ivu-menu-item-group .ivu-menu-item-active,
+    .ivu-menu-light.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu):after,
+    .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu .ivu-menu-item-active, 
+    .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu .ivu-menu-item-active:hover {
+        background: cadetblue !important;
+    }
+    .ivu-radio-checked .ivu-radio-inner {
+        border-color: @black;
+    }
+    .ivu-radio-inner:after {
+        background-color: @black;
+    }
+    .ivu-date-picker-cells-cell-selected em, .ivu-date-picker-cells-cell-selected:hover em,.ivu-date-picker-cells-cell-today em:after {
+        background: @black;
+    }
+    .ivu-date-picker-cells-focused em {
+        box-shadow: 0 0 0 1px @black inset;
+    }
+    .ivu-input:hover,.ivu-input:focus,.ivu-btn:hover,
+    .ivu-input-number:hover,.ivu-input-number:focus,
+    .ivu-select-visible .ivu-select-selection,.ivu-select-selection:hover, .ivu-select-selection-focused {
+        border-color: @black;
+        box-shadow: 0 0 !important;
+    }
+    //START 按钮组样式
+    .ivu-btn-group:not(.ivu-btn-group-vertical) .ivu-btn-primary:first-child:not(:last-child) {
+        border-right-color: @black;
+    }
+    .ivu-btn-group:not(.ivu-btn-group-vertical) .ivu-btn-primary:last-child:not(:first-child), .ivu-btn-group:not(.ivu-btn-group-vertical) .ivu-btn-primary + .ivu-btn {
+        border-left-color: @black;
+    }
+    //END   按钮组样式
+    .content {
+        h2,h3,h4 {
+            border-left-color: @black !important;
+        }
+        h2.block,h3.block,h4.block {
+            background: e("@{black}10") !important;
+        }
+    }
 }
 .theme-success {
+    .ivu-tag-primary {
+        background-color: @success;
+    }
     .ivu-btn-primary {
         background-color: @success;
         border-color: @success;
     }
     .ivu-radio-group-button .ivu-radio-wrapper-checked {
         border-color: @success;
-        color: @success;
+        background: @success;
+        color: white;
+    }
+    .ivu-radio-group-button .ivu-radio-wrapper-checked:hover {
+        background: @success;
     }
     .ivu-select-item-selected, .ivu-select-item-selected:hover {
         color: @success;
@@ -224,16 +278,61 @@ START 主题色
     .ivu-switch-checked {
         border-color: @success;
         background-color: @success;
+    }
+    .ivu-menu-item-group .ivu-menu-item-active,
+    .ivu-menu-light.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu):after,
+    .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu .ivu-menu-item-active, 
+    .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu .ivu-menu-item-active:hover {
+        background: @success !important;
+    }
+    .ivu-radio-checked .ivu-radio-inner {
+        border-color: @success;
+    }
+    .ivu-radio-inner:after {
+        background-color: @success;
+    }
+    .ivu-date-picker-cells-cell-selected em, .ivu-date-picker-cells-cell-selected:hover em,.ivu-date-picker-cells-cell-today em:after {
+        background: @success;
+    }
+    .ivu-date-picker-cells-focused em {
+        box-shadow: 0 0 0 1px @success inset;
+    }
+    .ivu-input:hover,.ivu-input:focus,.ivu-btn:hover,
+    .ivu-input-number:hover,.ivu-input-number:focus,
+    .ivu-select-visible .ivu-select-selection,.ivu-select-selection:hover, .ivu-select-selection-focused {
+        border-color: @success;
+        box-shadow: 0 0 !important;
+    }
+    .ivu-btn-group:not(.ivu-btn-group-vertical) .ivu-btn-primary:first-child:not(:last-child) {
+        border-right-color: @success;
+    }
+    .ivu-btn-group:not(.ivu-btn-group-vertical) .ivu-btn-primary:last-child:not(:first-child), .ivu-btn-group:not(.ivu-btn-group-vertical) .ivu-btn-primary + .ivu-btn {
+        border-left-color: @success;
+    }
+    .content {
+        h2,h3,h4 {
+            border-left-color: @success !important;
+        }
+        h2.block,h3.block,h4.block {
+            background: e("@{success}10") !important;
+        }
     }
 }
 .theme-warning {
+    .ivu-tag-primary {
+        background-color: @warning;
+    }
     .ivu-btn-primary {
         background-color: @warning;
         border-color: @warning;
     }
     .ivu-radio-group-button .ivu-radio-wrapper-checked {
         border-color: @warning;
-        color: @warning;
+        background: @warning;
+        color: white;
+    }
+    .ivu-radio-group-button .ivu-radio-wrapper-checked:hover {
+        background: @warning;
     }
     .ivu-select-item-selected, .ivu-select-item-selected:hover {
         color: @warning;
@@ -252,16 +351,60 @@ START 主题色
         border-color: @warning;
         background-color: @warning;
     }
+    .ivu-menu-item-group .ivu-menu-item-active,
+    .ivu-menu-light.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu):after,
+    .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu .ivu-menu-item-active, 
+    .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu .ivu-menu-item-active:hover {
+        background: @warning !important;
+    }
+    .ivu-radio-checked .ivu-radio-inner {
+        border-color: @warning;
+    }
+    .ivu-radio-inner:after {
+        background-color: @warning;
+    }
+    .ivu-date-picker-cells-cell-selected em, .ivu-date-picker-cells-cell-selected:hover em,.ivu-date-picker-cells-cell-today em:after {
+        background: @warning;
+    }
+    .ivu-date-picker-cells-focused em {
+        box-shadow: 0 0 0 1px @warning inset;
+    }
+    .ivu-input:hover,.ivu-input:focus,.ivu-btn:hover,
+    .ivu-input-number:hover,.ivu-input-number:focus,
+    .ivu-select-visible .ivu-select-selection,.ivu-select-selection:hover, .ivu-select-selection-focused {
+        border-color: @warning;
+        box-shadow: 0 0 !important;
+    }
+    .ivu-btn-group:not(.ivu-btn-group-vertical) .ivu-btn-primary:first-child:not(:last-child) {
+        border-right-color: @warning;
+    }
+    .ivu-btn-group:not(.ivu-btn-group-vertical) .ivu-btn-primary:last-child:not(:first-child), .ivu-btn-group:not(.ivu-btn-group-vertical) .ivu-btn-primary + .ivu-btn {
+        border-left-color: @warning;
+    }
+    .content {
+        h2,h3,h4 {
+            border-left-color: @warning !important;
+        }
+        h2.block,h3.block,h4.block {
+            background: e("@{warning}10") !important;
+        }
+    }
 }
 .theme-purple {
+    .ivu-tag-primary {
+        background-color: @purple;
+    }
     .ivu-btn-primary {
         background-color: @purple;
         border-color: @purple;
     }
-    
     .ivu-radio-group-button .ivu-radio-wrapper-checked {
         border-color: @purple;
-        color: @purple;
+        background: @purple;
+        color: white;
+    }
+    .ivu-radio-group-button .ivu-radio-wrapper-checked:hover {
+        background: @purple;
     }
     .ivu-select-item-selected, .ivu-select-item-selected:hover {
         color: @purple;
@@ -280,6 +423,44 @@ START 主题色
     .ivu-switch-checked {
         border-color: @purple;
         background-color: @purple;
+    }
+    .ivu-menu-item-group .ivu-menu-item-active,
+    .ivu-menu-light.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu):after,
+    .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu .ivu-menu-item-active, 
+    .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu .ivu-menu-item-active:hover {
+        background: @purple !important;
+    }
+    .ivu-radio-checked .ivu-radio-inner {
+        border-color: @purple;
+    }
+    .ivu-radio-inner:after {
+        background-color: @purple;
+    }
+    .ivu-date-picker-cells-cell-selected em, .ivu-date-picker-cells-cell-selected:hover em,.ivu-date-picker-cells-cell-today em:after {
+        background: @purple;
+    }
+    .ivu-date-picker-cells-focused em {
+        box-shadow: 0 0 0 1px @purple inset;
+    }
+    .ivu-input:hover,.ivu-input:focus,.ivu-btn:hover,
+    .ivu-input-number:hover,.ivu-input-number:focus,
+    .ivu-select-visible .ivu-select-selection,.ivu-select-selection:hover, .ivu-select-selection-focused {
+        border-color: @purple;
+        box-shadow: 0 0 !important;
+    }
+    .ivu-btn-group:not(.ivu-btn-group-vertical) .ivu-btn-primary:first-child:not(:last-child) {
+        border-right-color: @purple;
+    }
+    .ivu-btn-group:not(.ivu-btn-group-vertical) .ivu-btn-primary:last-child:not(:first-child), .ivu-btn-group:not(.ivu-btn-group-vertical) .ivu-btn-primary + .ivu-btn {
+        border-left-color: @purple;
+    }
+    .content {
+        h2,h3,h4 {
+            border-left-color: @purple !important;
+        }
+        h2.block,h3.block,h4.block {
+            background: e("@{purple}10") !important;
+        }
     }
 }
 .theme-primary {

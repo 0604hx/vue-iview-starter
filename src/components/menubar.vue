@@ -149,7 +149,7 @@
             type:"Group",
             text:"通用页面",
             child:[
-                {url:"/login", icon:"ios-lock-outline", color:"yellow",title:"打开登录页面",text:"登录页面"},
+                {url:"/login-v5", icon:"ios-lock-outline", color:"yellow",title:"打开登录页面",text:"登录页面"},
                 {url:"/404", icon:"ios-alert", color:"red",title:"浏览404页面",text:"404"},
             ]
         },
@@ -163,6 +163,7 @@
                 {url:"/demo/chart", icon:"ios-pie-outline",text:"图表、地图"},
                 {url:"/demo/code-editor", icon:"ios-code-working",text:"代码编辑器"},
                 {url:"/demo/upload", icon:"md-cloud-upload",text:"文件上传"},
+                {url:"/demo/upload-h5", icon:"md-cloud-upload",text:"文件上传（H5）"},
             ]
         },
         {

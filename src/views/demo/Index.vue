@@ -26,7 +26,7 @@
             <p class="h">代码参考：<a href="https://github.com/iview/iview-admin">iview-admin</a></p>
             <Row :gutter="5">
                 <Col :xs="24" :sm="8" :md="6">
-                    <InfoCard
+                    <InfoCard bg
                         id-name="register-today"
                         :end-val="100"
                         iconType="md-people"
@@ -35,7 +35,7 @@
                     ></InfoCard>
                 </Col>
                 <Col :xs="24" :sm="8" :md="6">
-                    <InfoCard
+                    <InfoCard bg
                         id-name="post-today"
                         :end-val="456"
                         iconType="ios-paper"
@@ -44,7 +44,7 @@
                     ></InfoCard>
                 </Col>
                 <Col :xs="24" :sm="8" :md="6">
-                    <InfoCard
+                    <InfoCard bg
                         id-name="visit"
                         :end-val="9875841"
                         iconType="ios-unlock"
@@ -53,7 +53,7 @@
                     ></InfoCard>
                 </Col>
                 <Col :xs="24" :sm="8" :md="6">
-                    <InfoCard
+                    <InfoCard bg
                         id-name="comment"
                         :end-val="78"
                         iconType="ios-chatbubbles"

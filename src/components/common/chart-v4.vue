@@ -49,8 +49,8 @@
      * 
      * 按需导入后，打包单个文件大小 430 kb
      */ 
-    // 引入 echarts 核心模块，核心模块提供了 echarts 使用必须要的接口。
-    const echarts = require('echarts/lib/echarts')
+    // import echarts from 'echarts'
+    let echarts = require("echarts/lib/echarts")
     //引入柱状图跟折线图
     require("echarts/lib/chart/bar")
     require("echarts/lib/chart/line")
@@ -61,14 +61,18 @@
     require("echarts/lib/component/toolbox")
     require("echarts/lib/component/legend")
     require("echarts/lib/component/markPoint")
-    require("echarts/lib/component/grid")
 
-    // let themes = [
-    //     "azul", "bee-inspired", "blue", "caravan", "carp", "cool", "dark-blue", "dark-bold", "dark-digerati", "dark-fresh-cut", "dark-mushroom", "dark", 
-    //     "eduardo", "forest", "fresh-cut", "fruit", "gray", "green", "helianthus", "infographic", "inspired", "jazz", "london", 
-    //     "macarons", "macarons2", "mint", "red-velvet", "red", "roma", "royal", "sakura", "shine", "tech-blue", "vintage"
-    // ]
-    // themes.forEach(v=>require(`echarts/theme/${v}`))
+    // require("echarts/theme/macarons")
+
+    let color = ['#2ec7c9','#b6a2de','#5ab1ef','#ffb980','#d87a80',
+        '#8d98b3','#e5cf0d','#97b552','#95706d','#dc69aa',
+        '#07a2a4','#9a7fd1','#588dd5','#f5994e','#c05050',
+        '#59678c','#c9ab00','#7eb00a','#6f5553','#c14089'
+    ]
+    /*
+    2021年9月3日 加入 echarts V5.x 版本的配色（好看！哈哈）
+    */
+    let colorV5 = ['#5470c6','#91cc75','#fac858','#ee6666','#73c0de','#3ba272','#fc8452','#9a60b4','#ea7ccc']  
 
     let grid = {
         left: '1%',
@@ -99,6 +103,7 @@
             xRotate: {type:Number, default:0},                  //X轴的文字旋转角度
             legendBottom:{type:Boolean, default:false},         //是否将 legend 在底部显示，默认在顶部
             toolbox:{type:Boolean, default:true},               //是否显示工具栏
+            v5: {type:Boolean, default:false},                  //是否启用 v5 配色
         },
         data () {
             return {
@@ -113,7 +118,7 @@
                 grid.bottom = "10%"
             }
             if(this.toolbox == false)   toolbox = {}
-            console.log(this.chart)
+            if(this.v5) color = colorV5
         },
         methods: {
             showLoading (text="数据正在努力加载..."){
@@ -123,7 +128,7 @@
                     effectOption: {backgroundColor:'rgba(0,0,0,0)'}
                 })
             },
-            update (title, legend=[], xItems=[],series=[], danwei="", customColor){
+            update (title, legend=[], xItems=[],series=[], danwei="", customColor=color){
                 let option = {
                     title:{ text: title},
                     legend:{ data: legend,  bottom: this.legendBottom?0:"auto"},
@@ -138,18 +143,17 @@
                             formatter:'{value} '+danwei
                         }
                     },
+                    color: customColor,
                     series: series.map(s=>{
                         return Object.assign({
                             type:"line",
                             smooth:true,
                             areaStyle:{},
-                            markLine:   this.pie?{}:{data:[{type:'average'}]},
-                            markPoint:  this.pie?{}: { data:[{type: 'max'},{type: 'min'}]}
+                            markLine: {data:[{type:'average'}]},
+                            markPoint:{ data:[{type: 'max'},{type: 'min'}]}
                         }, Array.isArray(s)? {data: s}: s)
                     })
                 }
-                if(customColor) option.color = customColor
-
                 this.chart.setOption(option)
                 this.chart.hideLoading()
             },
@@ -167,6 +171,7 @@
                     toolbox,
                     xAxis: this.pie?undefined:{ data: xs, boundaryGap: true },
                     yAxis: this.pie?undefined:ys,
+                    color,
                     series
                 })
                 this.chart.hideLoading()

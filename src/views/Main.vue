@@ -53,7 +53,6 @@
                         <Row type="flex" justify="end" align="middle" class="user-dropdown-innercon" style="padding-right:6px;font-size: 1.5rem;color:white;padding-bottom: 6px;">
                             <!--用户菜单在右上角-->
                             <!--<MenuUser></MenuUser>-->
-                            <!-- <img src="@/assets/cib/cib-white.svg" style="height:60px;"> -->
                             {{C.name}}
                         </Row>
                     </div>

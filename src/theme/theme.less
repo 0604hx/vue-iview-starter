@@ -17,18 +17,22 @@
         font-size: 18px;
         padding-left: 10px;
         margin: 20px 0;
-        border-left: 8px solid @primary-color;
+        border-left: 10px solid @primary-color;
     }
     h3 {
         font-size: 16px;
         margin: 0px 2px 6px;
         padding-left: 10px;
-        border-left: 6px solid @primary-color;
+        border-left: 8px solid @primary-color;
     }
     h4 {
         margin: 0px 2px 6px;
         padding-left: 10px;
-        border-left: 3px solid @primary-color;
+        border-left: 6px solid @primary-color;
+    }
+    h2.block,h3.block,h4.block {
+        display: block;
+        background: e("@{primary-color}10");
     }
 }
 
@@ -37,6 +41,42 @@
     .ivu-menu-item-active {
         color: white !important;
         background: @primary-color !important;
+    }
+}
+
+.ivu-menu {
+    &.subMenu {
+        height: 40px;
+        line-height: 40px;
+
+        .ivu-menu-item {
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .ivu-menu-item-active {
+            border-bottom: 5px solid white;
+            background: #f3f4f5;
+            border-top:1px solid @primary-color;
+        }
+    }
+
+    &.topMenu {
+        height: 40px;
+        line-height: 40px;
+
+        .topMenuTitle {
+            font-size: 1.15rem;
+            color: #fafbfc;
+            padding: 0px 40px 0px 10px;
+        }
+
+        .ivu-menu-item-active {
+            border-bottom: 8px solid white;
+            // background: #f3f4f5;
+            font-size:1rem;
+            font-weight:bold;
+        }
     }
 }
 
@@ -60,6 +100,11 @@ code {
     &.mini {
         td {
             height: 26px;
+        }
+    }
+    &.thin {
+        td {
+            height: 32px;
         }
     }
 }

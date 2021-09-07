@@ -4,14 +4,15 @@
 
 <template>
     <Card :padding="0">
-        <div class="infor-card-con">
-            <Col class="infor-card-icon-con" :style="{backgroundColor: color, color: 'white'}" span="8">
-                <Row class="height-100" type="flex" align="middle" justify="center">
-                    <Icon :type="iconType" :size="iconSize"></Icon>
-                </Row>
-            </Col>
-            <Col span="16" class="height-100">
-                <Row type="flex" align="middle" justify="center" class="height-100">
+        <div :style="{height:height+'px'}">
+            <Row class="height-100" type="flex" align="middle" justify="center">
+                <Col span="8" :style="{backgroundColor: bg?color:'inherit', color: bg?'white':color,height:height+'px',lineHeight:height+'px'}">
+                    <div class="c">
+                        <Icon :type="iconType" :size="iconSize"></Icon>
+                        <div v-if="label" style="font-size: 1rem;margin-top:-15px;line-height: 0px;">{{label}}</div>
+                    </div>
+                </Col>
+                <Col span="16">
                     <count-up 
                         class="infor-card-count user-created-count" 
                         :id-name="idName" 
@@ -20,10 +21,10 @@
                         :countSize="countSize"
                         :countWeight="countWeight"
                     >
-                        <p class="infor-intro-text" slot="intro">{{ introText }}</p>
+                        <p class="infor-intro-text c" slot="intro" v-html="introText"></p>
                     </count-up>
-                </Row>
-            </Col>
+                </Col>
+            </Row>
         </div>
     </Card>
 </template>
@@ -37,9 +38,16 @@ export default {
         countUp
     },
     props: {
+        //高度
+        height: {
+            type:Number,
+            default: 100
+        },
+        label: {type:String, default:""},
         idName: String,
         endVal: Number,
         color: String,
+        bg:{type:Boolean, default:false},
         iconType: String,
         introText: String,
         countSize: {

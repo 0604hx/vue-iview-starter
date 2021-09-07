@@ -132,6 +132,16 @@ window.RESULT2=(url,data,onOk,onFail)=>{
 }
 
 /**
+ * 使用 axios 上传文件
+ * 需要设置头部
+ */
+ window.UPLOAD = (url, data, onOk, onFail)=>{
+    let form = new FormData()
+    Object.keys(data).forEach(k=> form.append(k, data[k]))
+    RESULT(url, form, onOk, onFail, true, {'Content-Type': "multipart/form-data"})
+}
+
+/**
  * 下载文件到本地（使用 axios）
  * 程序如何判断是否为异常（后端异常返回的是 JSON 格式的异常信息）
  * 1. 后端没有返回文件名

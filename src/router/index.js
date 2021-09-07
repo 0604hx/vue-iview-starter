@@ -17,6 +17,7 @@ let loginRouter = [
     { path: '/login',name: 'login',meta:{title:"登录"}, component: resolve => require(['@V/login/Login'], resolve)},
     { path: '/login-v2',name: 'login2',meta:{title:"登录-v2"}, component: resolve => require(['@V/login/Login.2'], resolve)},
     { path: '/login-v3',name: 'login3',meta:{title:"登录-v3"}, component: resolve => require(['@V/login/Login.3'], resolve)},
+    { path: '/login-v5',name: 'login5',meta:{title:"登录-v5"}, component: resolve => require(['@V/login/Login.5'], resolve)},
 ]
 
 let page404 = { path: '/404', meta:{title: '404-页面不存在'}, name: 'error-404', component: resolve => require(['@/views/common/404.vue'], resolve) }
@@ -33,6 +34,7 @@ let appRouter = {
     { path: '/demo/chart', meta:{title:"图表、地图演示"}, name: 'demo-chart', component: resolve => require(['@V/demo/Chart'], resolve) },
     { path: '/demo/code-editor', meta:{title:"代码编辑器"}, name: 'demo-code-editor', component: resolve => require(['@V/demo/CodeEditor'], resolve) },
     { path: '/demo/upload', meta:{title:"文件上传"}, name: 'demo-upload', component: resolve => require(['@V/demo/Upload'], resolve) },
+    { path: '/demo/upload-h5', meta:{title:"文件上传（H5）"}, name: 'demo-upload', component: resolve => require(['@V/demo/Upload-H5'], resolve) },
     { path: '/demo/data-table', meta:{title:"表格展示二维数组"}, name: 'demo-upload', component: resolve => require(['@V/demo/DataTable'], resolve) },
 
     // 系统相关

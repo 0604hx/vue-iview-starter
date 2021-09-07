@@ -6,6 +6,12 @@ let buildCodeUrl = () => {
     return "/captcha-code?width=90&r=" + Math.random()
 }
 
+let TIPS = {
+    "pwd": "使用传统用户名（邮箱）/密码登录，建议升级为手机验证码或者扫一扫登录",
+    "phone":"手机验证码登录",
+    "scan":"手机客户端扫一扫登录"
+}
+
 export default {
     components: {
         FooterText
@@ -15,6 +21,8 @@ export default {
             working:false,
             username: '',
             password: '',
+            loginType:"pwd",
+            loginTip: "登录方式",
             remember: false,
             codeUrl: buildCodeUrl(),
             ruleValidate: {
@@ -49,7 +57,7 @@ export default {
             this.codeUrl = buildCodeUrl()
         },
         tip(code) {
-            if (code == 0) M.alert("请联系科技部找回密码", "忘记密码")
+            if (code == 0) M.alert("请 <b class='info'>致电或者发送邮件</b> 联系系统管理员重置密码 <div class='mt10 warning'>请妥善保存密码以便造成不必要的损失</div>", "忘记密码")
             else if (code == 1) {
                 M.alert("暂无开放新用户注册功能，如有需要请联系系统管理员","请联系需要管理员")
             }
@@ -61,6 +69,12 @@ export default {
             NEXT = decodeURIComponent(q.redirect)
             console.log("登录后跳转：", NEXT)
         }
+        this.loginTip = TIPS[this.loginType]
+    },
+    watch: {
+        loginType (v){
+            this.loginTip = TIPS[this.loginType]
+        }  
     },
     destroyed() {
         /**
